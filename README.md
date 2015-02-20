@@ -1,4 +1,4 @@
-# pentaphone
+# Pentaphone
 In-browser music performance tool using React.js and the Web Audio API.
 
 > **NOTE** The behavior below is how the Pentaphone *will* work. It is very early alpha. These notes are to guide my development and keep my eyes on the prize.
@@ -7,7 +7,7 @@ In-browser music performance tool using React.js and the Web Audio API.
 
 The pentatonic scale (the first, second, third, fifth and sixth notes of a scale) always sound good with their associated chord.
 
-The three primary chord in diatonic (Western) harmony are the ones based on the first, fourth and fifth notes of the key.
+The three primary chords in diatonic (Western) harmony are the ones based on the first, fourth and fifth notes of the key.
 
 The pentaphone puts those five notes in your right hand (spacebar = 1, j = 2, k = 3, l = 5, ; = 6) and those three chords in your left (a = I, s = IV, d = V).
 
