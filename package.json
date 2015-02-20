@@ -1,0 +1,25 @@
+{
+  "name": "pentaphone",
+  "version": "1.0.0",
+  "description": "Browser-based music performance tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/billgathen/pentaphone.git"
+  },
+  "keywords": [
+    "music",
+    "performance",
+    "web",
+    "audio"
+  ],
+  "author": "Bill Gathen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/billgathen/pentaphone/issues"
+  },
+  "homepage": "https://github.com/billgathen/pentaphone"
+}
