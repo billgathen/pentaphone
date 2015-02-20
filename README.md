@@ -1,9 +1,10 @@
 # pentaphone
-Browser-based music performance tool
+Browser-based music performance tool using React.js and the Web Audio API
 
 ## To Do
 
-* React + Web Audio
+* DONE Skeletal index.html with React components
+* DONE Setup NPM
 * Create GH page to play on
 * Build process compiles JSX into dir for GH page
 * Element that changes state based on key being pressed
@@ -21,3 +22,4 @@ Browser-based music performance tool
 * Number keys trigger rhythms, allowing shifts within songs
 * Rhythms trigger visuals, too
 * Choose I, IV, V or vi, ii, iii (with associated pentatonic)
+* Instructions show on page, but can be toggled on/off: effects happen behind
