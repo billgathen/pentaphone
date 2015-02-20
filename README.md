@@ -1,5 +1,19 @@
 # pentaphone
-Browser-based music performance tool using React.js and the Web Audio API
+In-browser music performance tool using React.js and the Web Audio API.
+
+> **NOTE** The behavior below is how the Pentaphone *will* work. It is very early alpha. These notes are to guide my development and keep my eyes on the prize.
+
+## What is a Pentaphone? How do I play one?
+
+The pentatonic scale (the first, second, third, fifth and sixth notes of a scale) always sound good with their associated chord.
+
+The three primary chord in diatonic (Western) harmony are the ones based on the first, fourth and fifth notes of the key.
+
+The pentaphone puts those five notes in your right hand (spacebar = 1, j = 2, k = 3, l = 5, ; = 6) and those three chords in your left (a = I, s = IV, d = V).
+
+When you play one of the LH chords, the notes played by the RH keys shift to the notes that match that chord.
+
+This means you can play any chord with your LH, then play any notes in the right hand any it will always sound good! Instant musical genius!
 
 ## To Do
 
