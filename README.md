@@ -4,6 +4,8 @@ Browser-based music performance tool
 ## To Do
 
 * React + Web Audio
+* Create GH page to play on
+* Build process compiles JSX into dir for GH page
 * Element that changes state based on key being pressed
 * Play note based on state
 * The pentatonic scale combined with I, IV, V chords
