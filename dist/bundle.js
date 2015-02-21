@@ -1,16 +1,27 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"./src/app.jsx":[function(require,module,exports){
 var React = require('react');
 
-var Hello = React.createClass({displayName: "Hello",
+var Chord = React.createClass({displayName: "Chord",
   render: function() {
-    return React.createElement("h1", null, "The Pentaphone");
+    return React.createElement("h1", null,  this.props.name);
   }
 });
 
-React.render(
-  React.createElement(Hello, null),
-  document.getElementById('main')
-);
+var Note = React.createClass({displayName: "Note",
+  render: function() {
+    return React.createElement("h2", null,  this.props.name);
+  }
+});
+
+React.render(React.createElement(Chord, {name: "I"}), document.getElementById('I-chord'));
+React.render(React.createElement(Chord, {name: "IV"}), document.getElementById('IV-chord'));
+React.render(React.createElement(Chord, {name: "V"}), document.getElementById('V-chord'));
+
+React.render(React.createElement(Note, {name: "1"}), document.getElementById('1-note'));
+React.render(React.createElement(Note, {name: "2"}), document.getElementById('2-note'));
+React.render(React.createElement(Note, {name: "3"}), document.getElementById('3-note'));
+React.render(React.createElement(Note, {name: "5"}), document.getElementById('5-note'));
+React.render(React.createElement(Note, {name: "6"}), document.getElementById('6-note'));
 
 
 },{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
