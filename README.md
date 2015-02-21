@@ -19,8 +19,9 @@ This means you can play any chord with your LH, then play any notes in the right
 
 * DONE Skeletal index.html with React components
 * DONE Setup NPM
-* Create GH page to play on
-* Build process compiles JSX into dir for GH page
+* DONE Create GH page to play on
+* DONE Gulp + Browserify + Watchify to reactify/bundle JSX and React
+* Display Elements on page
 * Element that changes state based on key being pressed
 * Play note based on state
 * The pentatonic scale combined with I, IV, V chords
