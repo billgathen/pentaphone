@@ -1,3 +1,7 @@
+.hidden {
+  /*display: none;*/
+}
+
 #chords {
   float: left;
   padding: 1em;

@@ -1,10 +1,11 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"./src/app.jsx":[function(require,module,exports){
 var React = require('react');
+var Chord = require('./chord.jsx');
 
-var Chord = React.createClass({displayName: "Chord",
+var Note = React.createClass({displayName: "Note",
   getInitialState: function() {
     return {
-      classes: [ 'chord' ]
+      classes: [ 'note' ]
     }
   },
   componentDidMount: function() {
@@ -17,31 +18,12 @@ var Chord = React.createClass({displayName: "Chord",
   pressed: function() {
     if (this.isntPressed()) {
       this.setState({
-        classes: this.state.classes.push('pressed')
+        classes: this.state.classes.concat('pressed')
       });
     }    
   },
   isntPressed: function() {
     return this.state.classes.indexOf('pressed') === -1;
-  },
-  render: function() {
-    return React.createElement("h1", {className:  this.state.classes.join(' ') },  this.props.name);
-  }
-});
-
-var Note = React.createClass({displayName: "Note",
-  getInitialState: function() {
-    return {
-      classes: [ 'note' ]
-    }
-  },
-  componentDidMount: function() {
-    var self = this;
-    document.addEventListener('keypress', function(e) {
-      if (e.keyCode === Number(self.props.keyCode)) {
-        console.log(self.props.name + " pressed");
-      };
-    });
   },
   render: function() {
     return React.createElement("h2", {className:  this.state.classes.join(' ') },  this.props.name);
@@ -59,7 +41,7 @@ React.render(React.createElement(Note, {name: "5", keyCode: "108"}), document.ge
 React.render(React.createElement(Note, {name: "6", keyCode: "59"}),  document.getElementById('6-note'));
 
 
-},{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
+},{"./chord.jsx":"/Users/bill/javascript/pentaphone/src/chord.jsx","react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -18346,6 +18328,39 @@ module.exports = warning;
 },{"./emptyFunction":"/Users/bill/javascript/pentaphone/node_modules/react/lib/emptyFunction.js","_process":"/Users/bill/javascript/pentaphone/node_modules/browserify/node_modules/process/browser.js"}],"/Users/bill/javascript/pentaphone/node_modules/react/react.js":[function(require,module,exports){
 module.exports = require('./lib/React');
 
-},{"./lib/React":"/Users/bill/javascript/pentaphone/node_modules/react/lib/React.js"}]},{},["./src/app.jsx"]);
+},{"./lib/React":"/Users/bill/javascript/pentaphone/node_modules/react/lib/React.js"}],"/Users/bill/javascript/pentaphone/src/chord.jsx":[function(require,module,exports){
+var React = require('react');
+
+var Chord = React.createClass({displayName: "Chord",
+  getInitialState: function() {
+    return {
+      classes: [ 'chord' ]
+    }
+  },
+  componentDidMount: function() {
+    var myCode = Number(this.props.keyCode);
+    var self = this;
+    document.addEventListener('keypress', function(e) {
+      if (e.keyCode === myCode) { self.pressed(); };
+    });
+  },
+  pressed: function() {
+    if (this.isntPressed()) {
+      this.setState({
+        classes: this.state.classes.concat('pressed')
+      });
+    }    
+  },
+  isntPressed: function() {
+    return this.state.classes.indexOf('pressed') === -1;
+  },
+  render: function() {
+    return React.createElement("h1", {className:  this.state.classes.join(' ') },  this.props.name);
+  }
+});
+
+module.exports = Chord;
+
+},{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}]},{},["./src/app.jsx"]);
 
 //# sourceMappingURL=bundle.js.map
