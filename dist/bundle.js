@@ -2,26 +2,61 @@
 var React = require('react');
 
 var Chord = React.createClass({displayName: "Chord",
+  getInitialState: function() {
+    return {
+      classes: [ 'chord' ]
+    }
+  },
+  componentDidMount: function() {
+    var myCode = Number(this.props.keyCode);
+    var self = this;
+    document.addEventListener('keypress', function(e) {
+      if (e.keyCode === myCode) { self.pressed(); };
+    });
+  },
+  pressed: function() {
+    if (this.isntPressed()) {
+      this.setState({
+        classes: this.state.classes.push('pressed')
+      });
+    }    
+  },
+  isntPressed: function() {
+    return this.state.classes.indexOf('pressed') === -1;
+  },
   render: function() {
-    return React.createElement("h1", null,  this.props.name);
+    return React.createElement("h1", {className:  this.state.classes.join(' ') },  this.props.name);
   }
 });
 
 var Note = React.createClass({displayName: "Note",
+  getInitialState: function() {
+    return {
+      classes: [ 'note' ]
+    }
+  },
+  componentDidMount: function() {
+    var self = this;
+    document.addEventListener('keypress', function(e) {
+      if (e.keyCode === Number(self.props.keyCode)) {
+        console.log(self.props.name + " pressed");
+      };
+    });
+  },
   render: function() {
-    return React.createElement("h2", null,  this.props.name);
+    return React.createElement("h2", {className:  this.state.classes.join(' ') },  this.props.name);
   }
 });
 
-React.render(React.createElement(Chord, {name: "I"}), document.getElementById('I-chord'));
-React.render(React.createElement(Chord, {name: "IV"}), document.getElementById('IV-chord'));
-React.render(React.createElement(Chord, {name: "V"}), document.getElementById('V-chord'));
+React.render(React.createElement(Chord, {name: "I", keyCode: "97"}), document.getElementById('I-chord'));
+React.render(React.createElement(Chord, {name: "IV", keyCode: "115"}), document.getElementById('IV-chord'));
+React.render(React.createElement(Chord, {name: "V", keyCode: "100"}), document.getElementById('V-chord'));
 
-React.render(React.createElement(Note, {name: "1"}), document.getElementById('1-note'));
-React.render(React.createElement(Note, {name: "2"}), document.getElementById('2-note'));
-React.render(React.createElement(Note, {name: "3"}), document.getElementById('3-note'));
-React.render(React.createElement(Note, {name: "5"}), document.getElementById('5-note'));
-React.render(React.createElement(Note, {name: "6"}), document.getElementById('6-note'));
+React.render(React.createElement(Note, {name: "1", keyCode: "32"}),  document.getElementById('1-note'));
+React.render(React.createElement(Note, {name: "2", keyCode: "106"}), document.getElementById('2-note'));
+React.render(React.createElement(Note, {name: "3", keyCode: "107"}), document.getElementById('3-note'));
+React.render(React.createElement(Note, {name: "5", keyCode: "108"}), document.getElementById('5-note'));
+React.render(React.createElement(Note, {name: "6", keyCode: "59"}),  document.getElementById('6-note'));
 
 
 },{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){

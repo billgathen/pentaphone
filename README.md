@@ -22,10 +22,11 @@ This means you can play any chord with your LH, then play any notes in the right
 * DONE Create GH page to play on
 * DONE Gulp + Browserify + Watchify to reactify/bundle JSX and React
 * DONE Display Elements on page
-* Element changes visual state based on key being pressed
-* Play note when key pressed
+* DONE Element changes visual state based on key being pressed
+* Toggle element state based on key position
+* Play note when key down
 * The pentatonic scale combined with I, IV, V chords
-* LH plays the "shifters" (ctrl, alt, cmd? q, a, z? a, s, d?) which plays each of the chords (open, closed or root notes) and adjusts the pentatonic to match the chord
+* LH plays the "shifters" (ctrl, alt, cmd? q, a, z? a, s, d?) which plays each of the chords (open, closed, inverted or root notes) and adjusts the pentatonic to match the chord
 * RH plays the notes: spacebar, j, k, l, ; which are the I, II, III, V and VI
 * Select waveform for tone
 * Visual elements on the page trigger by the playing: shifter changes palette, notes splash complementary colors across screen
