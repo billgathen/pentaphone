@@ -1,6 +1,6 @@
 var React = require('react');
 
-var Note = React.createClass({
+var NoteElement = React.createClass({
   getInitialState: function() {
     return {
       classes: [ 'note' ]
@@ -18,7 +18,7 @@ var Note = React.createClass({
   },
   pressed: function() {
     if (this.isntPressed()) {
-      this.props.sound.start();
+      this.props.note.start();
       this.setState({
         classes: this.state.classes.concat('pressed')
       });
@@ -26,7 +26,7 @@ var Note = React.createClass({
   },
   released: function() {
     if (this.isPressed()) {
-      this.props.sound.stop();
+      this.props.note.stop();
       this.state.classes.splice(this.state.classes.indexOf('pressed'),1);
       this.setState({
         classes: this.state.classes
@@ -44,4 +44,4 @@ var Note = React.createClass({
   }
 });
 
-module.exports = Note;
+module.exports = NoteElement;

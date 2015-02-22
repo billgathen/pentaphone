@@ -1,38 +1,41 @@
 var React = require('react');
-var Chord = require('./chord.jsx');
-var Note  = require('./note.jsx');
-var Sound = require('./sound.js');
+
+var ChordElement = require('./chord_element.jsx');
+var NoteElement  = require('./note_element.jsx');
+
+var Note  = require('./note.js');
+var Chord = require('./chord.js');
 
 React.render(
-  <Chord name="I"  keyCode="65" />,
+  <ChordElement name="I"  keyCode="65" chord={ new Chord(0) } />,
   document.getElementById('I-chord')
 );
 React.render(
-  <Chord name="IV" keyCode="83" />,
+  <ChordElement name="IV" keyCode="83" chord={ new Chord(500) } />,
   document.getElementById('IV-chord')
 );
 React.render(
-  <Chord name="V"  keyCode="68" />,
+  <ChordElement name="V"  keyCode="68" chord={ new Chord(700) } />,
   document.getElementById('V-chord')
 );
 
 React.render(
-  <Note name="1" keyCode="32"  sound={ new Sound(0) }/>,
+  <NoteElement name="1" keyCode="32"  note={ new Note(0) } />,
   document.getElementById('1-note')
 );
 React.render(
-  <Note name="2" keyCode="74"  sound={ new Sound(200) }/>,
+  <NoteElement name="2" keyCode="74"  note={ new Note(200) } />,
   document.getElementById('2-note')
 );
 React.render(
-  <Note name="3" keyCode="75"  sound={ new Sound(400) }/>,
+  <NoteElement name="3" keyCode="75"  note={ new Note(400) } />,
   document.getElementById('3-note')
 );
 React.render(
-  <Note name="5" keyCode="76"  sound={ new Sound(700) }/>,
+  <NoteElement name="5" keyCode="76"  note={ new Note(700) } />,
   document.getElementById('5-note')
 );
 React.render(
-  <Note name="6" keyCode="186" sound={ new Sound(900) }/>,
+  <NoteElement name="6" keyCode="186" note={ new Note(900) } />,
   document.getElementById('6-note')
 );

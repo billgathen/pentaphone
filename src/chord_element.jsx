@@ -18,6 +18,7 @@ var Chord = React.createClass({
   },
   pressed: function() {
     if (this.isntPressed()) {
+      this.props.chord.start();
       this.setState({
         classes: this.state.classes.concat('pressed')
       });
@@ -25,6 +26,7 @@ var Chord = React.createClass({
   },
   released: function() {
     if (this.isPressed()) {
+      this.props.chord.stop();
       this.state.classes.splice(this.state.classes.indexOf('pressed'),1);
       this.setState({
         classes: this.state.classes

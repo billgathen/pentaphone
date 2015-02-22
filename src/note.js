@@ -20,20 +20,18 @@ function gain() {
   return gainNode;
 }
 
-var Sound = function(detune) {
+var Note = function(detune) {
   this.osc = osc(root, detune);
   this.gainNode = gain();
   this.osc.connect(this.gainNode);
 }
 
-Sound.prototype.start = function() {
-  console.log("start");
+Note.prototype.start = function() {
   this.gainNode.gain.value = normalVolume;
 }
 
-Sound.prototype.stop = function() {
-  console.log("stop");
+Note.prototype.stop = function() {
   this.gainNode.gain.value = 0;
 }
 
-module.exports = Sound;
+module.exports = Note;

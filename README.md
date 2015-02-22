@@ -27,17 +27,16 @@ This means you can play any chord with your LH, then play any notes in the right
 * DONE Play pentatonic notes when key down, stop when key released
 * DONE Extract sound into dedicated class
 * DONE Allow the same note to be played > 1 time
-* Play major chords when shifters pressed
-* LH plays the "shifters" (ctrl, alt, cmd? q, a, z? a, s, d?) which plays each of the chords (open, closed, inverted or root notes) and adjusts the pentatonic to match the chord
-* RH plays the notes: spacebar, j, k, l, ; which are the I, II, III, V and VI
+* DONE Play major chords when a,s,d pressed
+* Play relative minor chords when q, w, e pressed
+* Pressing a shifter changes the pentatonic, which stays there until shifted again
 * Select waveform for tone
 * Visual elements on the page trigger by the playing: shifter changes palette, notes splash complementary colors across screen
 * Select palette for visuals
-* Pressing a shifter changes the pentatonic, which stays there until shifted again, but stops playing the chord when you lift off the key, allowing chords rhythms
 * Rhythm section: drums and bass
 * Select the key signature (bass adjusts)
+* Choose closed, open, inverted or root notes for LH
 * Add basic effects, ADSR, etc
 * Number keys trigger rhythms, allowing shifts within songs
 * Rhythms trigger visuals, too
-* Choose I, IV, V or vi, ii, iii (with associated pentatonic)
 * Instructions show on page, but can be toggled on/off: effects happen behind
