@@ -1,0 +1,29 @@
+## To Do
+
+* DONE Skeletal index.html with React components
+* DONE Setup NPM
+* DONE Create GH page to play on
+* DONE Gulp + Browserify + Watchify to reactify/bundle JSX and React
+* DONE Display Elements on page
+* DONE Element changes visual state based on key being pressed
+* DONE Toggle element state based on key position
+* DONE Play pentatonic notes when key down, stop when key released
+* DONE Extract sound into dedicated class
+* DONE Allow the same note to be played > 1 time
+* DONE Play major chords when a,s,d pressed
+* DONE Play relative minor chords when q, w, e pressed
+* DONE Build normal dir structure (js, styles) to support easy export to player page
+* DONE Export playable example to gh-pages ()
+* DONE Update gh-pages home page to link to playable example
+* DONE Move LH keys to s, d, f and w, e, r (LH home row)
+* Pressing a shifter changes the pentatonic, which stays there until shifted again
+* Select waveform for tone
+* Visual elements on the page trigger by the playing: shifter changes palette, notes splash complementary colors across screen
+* Select palette for visuals
+* Rhythm section: drums and bass
+* Select the key signature (bass adjusts)
+* Choose closed, open, inverted or root notes for LH
+* Add basic effects, ADSR, etc
+* Number keys trigger rhythms, allowing shifts within songs
+* Rhythms trigger visuals, too
+* Instructions show on page, but can be toggled on/off: effects happen behind

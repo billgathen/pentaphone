@@ -9,28 +9,28 @@ var MajorChord = require('./major_chord.js');
 var MinorChord = require('./minor_chord.js');
 
 React.render(
-  React.createElement(ChordElement, {name: "I", keyCode: "65", keyName: "a", chord:  new MajorChord(0) }),
+  React.createElement(ChordElement, {name: "I", keyCode: "83", keyName: "s", chord:  new MajorChord(0) }),
   document.getElementById('I-chord')
 );
 React.render(
-  React.createElement(ChordElement, {name: "IV", keyCode: "83", keyName: "s", chord:  new MajorChord(500) }),
+  React.createElement(ChordElement, {name: "IV", keyCode: "68", keyName: "d", chord:  new MajorChord(500) }),
   document.getElementById('IV-chord')
 );
 React.render(
-  React.createElement(ChordElement, {name: "V", keyCode: "68", keyName: "d", chord:  new MajorChord(700) }),
+  React.createElement(ChordElement, {name: "V", keyCode: "70", keyName: "f", chord:  new MajorChord(700) }),
   document.getElementById('V-chord')
 );
 
 React.render(
-  React.createElement(ChordElement, {name: "vi", keyCode: "81", keyName: "q", chord:  new MinorChord(900) }),
+  React.createElement(ChordElement, {name: "vi", keyCode: "87", keyName: "w", chord:  new MinorChord(900) }),
   document.getElementById('vi-chord')
 );
 React.render(
-  React.createElement(ChordElement, {name: "ii", keyCode: "87", keyName: "w", chord:  new MinorChord(200) }),
+  React.createElement(ChordElement, {name: "ii", keyCode: "69", keyName: "e", chord:  new MinorChord(200) }),
   document.getElementById('ii-chord')
 );
 React.render(
-  React.createElement(ChordElement, {name: "iii", keyCode: "69", keyName: "e", chord:  new MinorChord(400) }),
+  React.createElement(ChordElement, {name: "iii", keyCode: "82", keyName: "r", chord:  new MinorChord(400) }),
   document.getElementById('iii-chord')
 );
 
@@ -18528,7 +18528,7 @@ var NoteElement = React.createClass({displayName: "NoteElement",
   render: function() {
     return React.createElement("span", null, 
         React.createElement("strong", {className:  this.state.classes.join(' ') },  this.props.name), 
-        " ", 
+        React.createElement("span", null, " "), 
         React.createElement("small", null,  this.props.keyName)
       );
   }
