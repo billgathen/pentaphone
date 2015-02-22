@@ -18,6 +18,7 @@ var Note = React.createClass({
   },
   pressed: function() {
     if (this.isntPressed()) {
+      this.props.oscillator.start();
       this.setState({
         classes: this.state.classes.concat('pressed')
       });
@@ -25,6 +26,7 @@ var Note = React.createClass({
   },
   released: function() {
     if (this.isPressed()) {
+      this.props.oscillator.stop();
       this.state.classes.splice(this.state.classes.indexOf('pressed'),1);
       this.setState({
         classes: this.state.classes
