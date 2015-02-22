@@ -9,7 +9,7 @@ The pentatonic scale (the first, second, third, fifth and sixth notes of a scale
 
 The three primary chords in diatonic (Western) harmony are the ones based on the first, fourth and fifth notes of the key.
 
-The pentaphone puts those five notes in your right hand (spacebar = 1, j = 2, k = 3, l = 5, ; = 6) and those three chords in your left (a = I, s = IV, d = V).
+The pentaphone puts those five notes in your right hand (spacebar = 1, j = 2, k = 3, l = 5, ; = 6) and those three chords in your left (a = I, s = IV, d = V). Feeling more adventurous? Try relative minor chords (q = vi, w = ii, e = iii)!
 
 When you play one of the LH chords, the notes played by the RH keys shift to the notes that match that chord.
 

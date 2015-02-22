@@ -18443,11 +18443,11 @@ module.exports = MinorChord;
 },{"./chord.js":"/Users/bill/javascript/pentaphone/src/chord.js"}],"/Users/bill/javascript/pentaphone/src/note.js":[function(require,module,exports){
 var ctx = new AudioContext();
 var root = 440;
-var normalVolume = 0.5;
+var normalVolume = 0.05;
 
 function osc(root, detune) {
   var osc = ctx.createOscillator();
-  osc.type = "sine";
+  osc.type = "square";
   osc.frequency.value = root;
   osc.detune.value    = detune;
   osc.start();
