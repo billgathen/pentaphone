@@ -1,0 +1,25 @@
+.hidden {
+  /*display: none;*/
+}
+
+#chords {
+  float: left;
+  padding: 1em;
+}
+
+#notes {
+  float: left;
+  padding: 1em;
+}
+
+.chord {
+  color: green;
+}
+
+.note {
+  color: red;
+}
+
+.pressed {
+  border: 1px solid black;
+}
