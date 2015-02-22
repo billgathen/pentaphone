@@ -13,7 +13,7 @@ bundler.on('update', bundle);
 
 gulp.task('watch', [ 'html', 'styles' ], function() {
   gulp.watch('src/html/**/*.html', ['html']);
-  gulp.watch('src/styles/**/*.scss', ['styles']);
+  gulp.watch('src/styles/**/*.css', ['styles']);
   gulp.watch('src/js/**/*', function() { bundle(); });
 });
 

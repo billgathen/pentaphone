@@ -40,7 +40,11 @@ var Chord = React.createClass({
     return ! this.isntPressed();
   },
   render: function() {
-    return <h1 className={ this.state.classes.join(' ') }>{ this.props.name }</h1>;
+    return <span>
+        <strong className={ this.state.classes.join(' ') }>{ this.props.name }</strong>
+        <span> </span>
+        <small>{ this.props.keyName }</small>
+      </span>;
   }
 });
 

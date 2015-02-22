@@ -13,10 +13,12 @@
 }
 
 .chord {
+  font-size: xx-large;
   color: green;
 }
 
 .note {
+  font-size: x-large;
   color: red;
 }
 
