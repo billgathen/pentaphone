@@ -1,10 +1,10 @@
 var Note = require('./note.js');
 
-var Chord = function(detune) {
-  var octaveDown = detune - 1200;
-  this.note1 = new Note(octaveDown);
-  this.note2 = new Note(octaveDown + 400);
-  this.note3 = new Note(octaveDown + 700);
+var Chord = function(root, detune1, detune2, detune3) {
+  var octaveDown = root - 1200;
+  this.note1 = new Note(octaveDown + detune1);
+  this.note2 = new Note(octaveDown + detune2);
+  this.note3 = new Note(octaveDown + detune3);
 }
 
 Chord.prototype.start = function() {

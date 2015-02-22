@@ -4,20 +4,34 @@ var React = require('react');
 var ChordElement = require('./chord_element.jsx');
 var NoteElement  = require('./note_element.jsx');
 
-var Note  = require('./note.js');
-var Chord = require('./chord.js');
+var Note       = require('./note.js');
+var MajorChord = require('./major_chord.js');
+var MinorChord = require('./minor_chord.js');
 
 React.render(
-  React.createElement(ChordElement, {name: "I", keyCode: "65", chord:  new Chord(0) }),
+  React.createElement(ChordElement, {name: "I", keyCode: "65", chord:  new MajorChord(0) }),
   document.getElementById('I-chord')
 );
 React.render(
-  React.createElement(ChordElement, {name: "IV", keyCode: "83", chord:  new Chord(500) }),
+  React.createElement(ChordElement, {name: "IV", keyCode: "83", chord:  new MajorChord(500) }),
   document.getElementById('IV-chord')
 );
 React.render(
-  React.createElement(ChordElement, {name: "V", keyCode: "68", chord:  new Chord(700) }),
+  React.createElement(ChordElement, {name: "V", keyCode: "68", chord:  new MajorChord(700) }),
   document.getElementById('V-chord')
+);
+
+React.render(
+  React.createElement(ChordElement, {name: "vi", keyCode: "81", chord:  new MinorChord(900) }),
+  document.getElementById('vi-chord')
+);
+React.render(
+  React.createElement(ChordElement, {name: "ii", keyCode: "87", chord:  new MinorChord(200) }),
+  document.getElementById('ii-chord')
+);
+React.render(
+  React.createElement(ChordElement, {name: "iii", keyCode: "69", chord:  new MinorChord(400) }),
+  document.getElementById('iii-chord')
 );
 
 React.render(
@@ -42,7 +56,7 @@ React.render(
 );
 
 
-},{"./chord.js":"/Users/bill/javascript/pentaphone/src/chord.js","./chord_element.jsx":"/Users/bill/javascript/pentaphone/src/chord_element.jsx","./note.js":"/Users/bill/javascript/pentaphone/src/note.js","./note_element.jsx":"/Users/bill/javascript/pentaphone/src/note_element.jsx","react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
+},{"./chord_element.jsx":"/Users/bill/javascript/pentaphone/src/chord_element.jsx","./major_chord.js":"/Users/bill/javascript/pentaphone/src/major_chord.js","./minor_chord.js":"/Users/bill/javascript/pentaphone/src/minor_chord.js","./note.js":"/Users/bill/javascript/pentaphone/src/note.js","./note_element.jsx":"/Users/bill/javascript/pentaphone/src/note_element.jsx","react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -18332,11 +18346,11 @@ module.exports = require('./lib/React');
 },{"./lib/React":"/Users/bill/javascript/pentaphone/node_modules/react/lib/React.js"}],"/Users/bill/javascript/pentaphone/src/chord.js":[function(require,module,exports){
 var Note = require('./note.js');
 
-var Chord = function(detune) {
-  var octaveDown = detune - 1200;
-  this.note1 = new Note(octaveDown);
-  this.note2 = new Note(octaveDown + 400);
-  this.note3 = new Note(octaveDown + 700);
+var Chord = function(root, detune1, detune2, detune3) {
+  var octaveDown = root - 1200;
+  this.note1 = new Note(octaveDown + detune1);
+  this.note2 = new Note(octaveDown + detune2);
+  this.note3 = new Note(octaveDown + detune3);
 }
 
 Chord.prototype.start = function() {
@@ -18402,7 +18416,31 @@ var Chord = React.createClass({displayName: "Chord",
 
 module.exports = Chord;
 
-},{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/src/note.js":[function(require,module,exports){
+},{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/src/major_chord.js":[function(require,module,exports){
+var Chord = require('./chord.js');
+
+var MajorChord = function(root) {
+  this.chord = new Chord(root, 0, 400, 700);
+}
+
+MajorChord.prototype.start = function() { this.chord.start(); }
+MajorChord.prototype.stop  = function() { this.chord.stop(); }
+
+module.exports = MajorChord;
+
+},{"./chord.js":"/Users/bill/javascript/pentaphone/src/chord.js"}],"/Users/bill/javascript/pentaphone/src/minor_chord.js":[function(require,module,exports){
+var Chord = require('./chord.js');
+
+var MinorChord = function(root) {
+  this.chord = new Chord(root, 0, 300, 700);
+}
+
+MinorChord.prototype.start = function() { this.chord.start(); }
+MinorChord.prototype.stop  = function() { this.chord.stop(); }
+
+module.exports = MinorChord;
+
+},{"./chord.js":"/Users/bill/javascript/pentaphone/src/chord.js"}],"/Users/bill/javascript/pentaphone/src/note.js":[function(require,module,exports){
 var ctx = new AudioContext();
 var root = 440;
 var normalVolume = 0.5;

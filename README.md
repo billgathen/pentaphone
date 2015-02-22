@@ -28,7 +28,7 @@ This means you can play any chord with your LH, then play any notes in the right
 * DONE Extract sound into dedicated class
 * DONE Allow the same note to be played > 1 time
 * DONE Play major chords when a,s,d pressed
-* Play relative minor chords when q, w, e pressed
+* DONE Play relative minor chords when q, w, e pressed
 * Pressing a shifter changes the pentatonic, which stays there until shifted again
 * Select waveform for tone
 * Visual elements on the page trigger by the playing: shifter changes palette, notes splash complementary colors across screen
