@@ -29,7 +29,8 @@
     "gulp-util": "^3.0.3",
     "reactify": "^1.0.0",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.0.0"
+    "vinyl-source-stream": "^1.0.0",
+    "watchify": "^2.4.0"
   },
   "dependencies": {
     "react": "^0.12.2"

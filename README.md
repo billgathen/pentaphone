@@ -23,7 +23,7 @@ This means you can play any chord with your LH, then play any notes in the right
 * DONE Gulp + Browserify + Watchify to reactify/bundle JSX and React
 * DONE Display Elements on page
 * DONE Element changes visual state based on key being pressed
-* Toggle element state based on key position
+* DONE Toggle element state based on key position
 * Play note when key down
 * The pentatonic scale combined with I, IV, V chords
 * LH plays the "shifters" (ctrl, alt, cmd? q, a, z? a, s, d?) which plays each of the chords (open, closed, inverted or root notes) and adjusts the pentatonic to match the chord

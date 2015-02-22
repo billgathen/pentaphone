@@ -1,47 +1,20 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"./src/app.jsx":[function(require,module,exports){
 var React = require('react');
 var Chord = require('./chord.jsx');
+var Note  = require('./note.jsx');
 
-var Note = React.createClass({displayName: "Note",
-  getInitialState: function() {
-    return {
-      classes: [ 'note' ]
-    }
-  },
-  componentDidMount: function() {
-    var myCode = Number(this.props.keyCode);
-    var self = this;
-    document.addEventListener('keypress', function(e) {
-      if (e.keyCode === myCode) { self.pressed(); };
-    });
-  },
-  pressed: function() {
-    if (this.isntPressed()) {
-      this.setState({
-        classes: this.state.classes.concat('pressed')
-      });
-    }    
-  },
-  isntPressed: function() {
-    return this.state.classes.indexOf('pressed') === -1;
-  },
-  render: function() {
-    return React.createElement("h2", {className:  this.state.classes.join(' ') },  this.props.name);
-  }
-});
-
-React.render(React.createElement(Chord, {name: "I", keyCode: "97"}), document.getElementById('I-chord'));
-React.render(React.createElement(Chord, {name: "IV", keyCode: "115"}), document.getElementById('IV-chord'));
-React.render(React.createElement(Chord, {name: "V", keyCode: "100"}), document.getElementById('V-chord'));
+React.render(React.createElement(Chord, {name: "I", keyCode: "65"}), document.getElementById('I-chord'));
+React.render(React.createElement(Chord, {name: "IV", keyCode: "83"}), document.getElementById('IV-chord'));
+React.render(React.createElement(Chord, {name: "V", keyCode: "68"}), document.getElementById('V-chord'));
 
 React.render(React.createElement(Note, {name: "1", keyCode: "32"}),  document.getElementById('1-note'));
-React.render(React.createElement(Note, {name: "2", keyCode: "106"}), document.getElementById('2-note'));
-React.render(React.createElement(Note, {name: "3", keyCode: "107"}), document.getElementById('3-note'));
-React.render(React.createElement(Note, {name: "5", keyCode: "108"}), document.getElementById('5-note'));
-React.render(React.createElement(Note, {name: "6", keyCode: "59"}),  document.getElementById('6-note'));
+React.render(React.createElement(Note, {name: "2", keyCode: "74"}),  document.getElementById('2-note'));
+React.render(React.createElement(Note, {name: "3", keyCode: "75"}),  document.getElementById('3-note'));
+React.render(React.createElement(Note, {name: "5", keyCode: "76"}),  document.getElementById('5-note'));
+React.render(React.createElement(Note, {name: "6", keyCode: "186"}), document.getElementById('6-note'));
 
 
-},{"./chord.jsx":"/Users/bill/javascript/pentaphone/src/chord.jsx","react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
+},{"./chord.jsx":"/Users/bill/javascript/pentaphone/src/chord.jsx","./note.jsx":"/Users/bill/javascript/pentaphone/src/note.jsx","react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -18340,8 +18313,11 @@ var Chord = React.createClass({displayName: "Chord",
   componentDidMount: function() {
     var myCode = Number(this.props.keyCode);
     var self = this;
-    document.addEventListener('keypress', function(e) {
+    document.addEventListener('keydown', function(e) {
       if (e.keyCode === myCode) { self.pressed(); };
+    });
+    document.addEventListener('keyup', function(e) {
+      if (e.keyCode === myCode) { self.released(); };
     });
   },
   pressed: function() {
@@ -18351,8 +18327,19 @@ var Chord = React.createClass({displayName: "Chord",
       });
     }    
   },
+  released: function() {
+    if (this.isPressed()) {
+      this.state.classes.splice(this.state.classes.indexOf('pressed'),1);
+      this.setState({
+        classes: this.state.classes
+      });
+    }
+  },
   isntPressed: function() {
     return this.state.classes.indexOf('pressed') === -1;
+  },
+  isPressed: function() {
+    return ! this.isntPressed();
   },
   render: function() {
     return React.createElement("h1", {className:  this.state.classes.join(' ') },  this.props.name);
@@ -18360,6 +18347,53 @@ var Chord = React.createClass({displayName: "Chord",
 });
 
 module.exports = Chord;
+
+},{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/src/note.jsx":[function(require,module,exports){
+var React = require('react');
+
+var Note = React.createClass({displayName: "Note",
+  getInitialState: function() {
+    return {
+      classes: [ 'note' ]
+    }
+  },
+  componentDidMount: function() {
+    var myCode = Number(this.props.keyCode);
+    var self = this;
+    document.addEventListener('keydown', function(e) {
+      if (e.keyCode === myCode) { self.pressed(); };
+    });
+    document.addEventListener('keyup', function(e) {
+      if (e.keyCode === myCode) { self.released(); };
+    });
+  },
+  pressed: function() {
+    if (this.isntPressed()) {
+      this.setState({
+        classes: this.state.classes.concat('pressed')
+      });
+    }    
+  },
+  released: function() {
+    if (this.isPressed()) {
+      this.state.classes.splice(this.state.classes.indexOf('pressed'),1);
+      this.setState({
+        classes: this.state.classes
+      });
+    }    
+  },
+  isntPressed: function() {
+    return this.state.classes.indexOf('pressed') === -1;
+  },
+  isPressed: function() {
+    return ! this.isntPressed();
+  },
+  render: function() {
+    return React.createElement("h2", {className:  this.state.classes.join(' ') },  this.props.name);
+  }
+});
+
+module.exports = Note;
 
 },{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}]},{},["./src/app.jsx"]);
 
