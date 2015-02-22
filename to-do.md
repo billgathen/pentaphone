@@ -1,3 +1,17 @@
+## How to deploy a new version of the app onto the gh-page
+
+* Get everything committed/pushed on master
+* cd into the dist dir
+* zip -r hold *
+* git co gh-pages
+* unzip hold.zip
+* rm hold.zip
+* Commit and push!
+
+## How to keep the dist dir updated
+
+* gulp watch (note that JS/JSX files only update when you change app.jsx: I'll fix that eventually)
+
 ## To Do
 
 * DONE Skeletal index.html with React components
