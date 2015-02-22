@@ -1,10 +1,10 @@
 var ctx = new AudioContext();
 var root = 440;
-var normalVolume = 0.05;
+var normalVolume = 0.5;
 
 function osc(root, detune) {
   var osc = ctx.createOscillator();
-  osc.type = "square";
+  osc.type = "sine";
   osc.frequency.value = root;
   osc.detune.value    = detune;
   osc.start();
