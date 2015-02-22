@@ -2,39 +2,44 @@
 var React = require('react');
 var Chord = require('./chord.jsx');
 var Note  = require('./note.jsx');
+var Sound = require('./sound.js');
 
-var ctx = new AudioContext();
-var a_note = 440;
+React.render(
+  React.createElement(Chord, {name: "I", keyCode: "65"}),
+  document.getElementById('I-chord')
+);
+React.render(
+  React.createElement(Chord, {name: "IV", keyCode: "83"}),
+  document.getElementById('IV-chord')
+);
+React.render(
+  React.createElement(Chord, {name: "V", keyCode: "68"}),
+  document.getElementById('V-chord')
+);
 
-//
-// Start/stop only works once!
-//
-function osc(root, detune) {
-  var osc = ctx.createOscillator();
-  osc.type = "sine";
-  osc.frequency.value = root;
-  osc.detune.value    = detune;
-  var gainNode = ctx.createGain();
-  gainNode.gain.value = 0.5;
-
-  osc.connect(gainNode);
-  gainNode.connect(ctx.destination);
-
-  return osc;
-};
-
-React.render(React.createElement(Chord, {name: "I", keyCode: "65"}), document.getElementById('I-chord'));
-React.render(React.createElement(Chord, {name: "IV", keyCode: "83"}), document.getElementById('IV-chord'));
-React.render(React.createElement(Chord, {name: "V", keyCode: "68"}), document.getElementById('V-chord'));
-
-React.render(React.createElement(Note, {name: "1", keyCode: "32", oscillator:  osc(a_note, 0) }), document.getElementById('1-note'));
-React.render(React.createElement(Note, {name: "2", keyCode: "74", oscillator:  osc(a_note, 200) }), document.getElementById('2-note'));
-React.render(React.createElement(Note, {name: "3", keyCode: "75", oscillator:  osc(a_note, 400) }), document.getElementById('3-note'));
-React.render(React.createElement(Note, {name: "5", keyCode: "76", oscillator:  osc(a_note, 700) }), document.getElementById('5-note'));
-React.render(React.createElement(Note, {name: "6", keyCode: "186", oscillator:  osc(a_note, 900) }), document.getElementById('6-note'));
+React.render(
+  React.createElement(Note, {name: "1", keyCode: "32", sound:  new Sound(0) }),
+  document.getElementById('1-note')
+);
+React.render(
+  React.createElement(Note, {name: "2", keyCode: "74", sound:  new Sound(200) }),
+  document.getElementById('2-note')
+);
+React.render(
+  React.createElement(Note, {name: "3", keyCode: "75", sound:  new Sound(400) }),
+  document.getElementById('3-note')
+);
+React.render(
+  React.createElement(Note, {name: "5", keyCode: "76", sound:  new Sound(700) }),
+  document.getElementById('5-note')
+);
+React.render(
+  React.createElement(Note, {name: "6", keyCode: "186", sound:  new Sound(900) }),
+  document.getElementById('6-note')
+);
 
 
-},{"./chord.jsx":"/Users/bill/javascript/pentaphone/src/chord.jsx","./note.jsx":"/Users/bill/javascript/pentaphone/src/note.jsx","react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
+},{"./chord.jsx":"/Users/bill/javascript/pentaphone/src/chord.jsx","./note.jsx":"/Users/bill/javascript/pentaphone/src/note.jsx","./sound.js":"/Users/bill/javascript/pentaphone/src/sound.js","react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -18389,7 +18394,7 @@ var Note = React.createClass({displayName: "Note",
   },
   pressed: function() {
     if (this.isntPressed()) {
-      this.props.oscillator.start();
+      this.props.sound.start();
       this.setState({
         classes: this.state.classes.concat('pressed')
       });
@@ -18397,7 +18402,7 @@ var Note = React.createClass({displayName: "Note",
   },
   released: function() {
     if (this.isPressed()) {
-      this.props.oscillator.stop();
+      this.props.sound.stop();
       this.state.classes.splice(this.state.classes.indexOf('pressed'),1);
       this.setState({
         classes: this.state.classes
@@ -18417,6 +18422,47 @@ var Note = React.createClass({displayName: "Note",
 
 module.exports = Note;
 
-},{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}]},{},["./src/app.jsx"]);
+},{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/src/sound.js":[function(require,module,exports){
+var ctx = new AudioContext();
+var root = 440;
+var normalVolume = 0.5;
+
+function osc(root, detune) {
+  var osc = ctx.createOscillator();
+  osc.type = "sine";
+  osc.frequency.value = root;
+  osc.detune.value    = detune;
+  osc.start();
+
+  return osc;
+};
+
+function gain() {
+  var gainNode = ctx.createGain();
+  gainNode.gain.value = 0;
+  gainNode.connect(ctx.destination);
+
+  return gainNode;
+}
+
+var Sound = function(detune) {
+  this.osc = osc(root, detune);
+  this.gainNode = gain();
+  this.osc.connect(this.gainNode);
+}
+
+Sound.prototype.start = function() {
+  console.log("start");
+  this.gainNode.gain.value = normalVolume;
+}
+
+Sound.prototype.stop = function() {
+  console.log("stop");
+  this.gainNode.gain.value = 0;
+}
+
+module.exports = Sound;
+
+},{}]},{},["./src/app.jsx"]);
 
 //# sourceMappingURL=bundle.js.map

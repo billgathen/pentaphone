@@ -25,7 +25,8 @@ This means you can play any chord with your LH, then play any notes in the right
 * DONE Element changes visual state based on key being pressed
 * DONE Toggle element state based on key position
 * DONE Play pentatonic notes when key down, stop when key released
-* Allow the same note to be played > 1 time
+* DONE Extract sound into dedicated class
+* DONE Allow the same note to be played > 1 time
 * Play major chords when shifters pressed
 * LH plays the "shifters" (ctrl, alt, cmd? q, a, z? a, s, d?) which plays each of the chords (open, closed, inverted or root notes) and adjusts the pentatonic to match the chord
 * RH plays the notes: spacebar, j, k, l, ; which are the I, II, III, V and VI
