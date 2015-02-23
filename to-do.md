@@ -30,8 +30,9 @@
 * DONE Export playable example to gh-pages ()
 * DONE Update gh-pages home page to link to playable example
 * DONE Move LH keys to s, d, f and w, e, r (LH home row)
+* Select waveform for tone, adjusting gain as necessary: z, x, c, v
+* Split tones: chords based on z, x, c, v and notes based on m, ,, ., /
 * Pressing a shifter changes the pentatonic, which stays there until shifted again
-* Select waveform for tone
 * Visual elements on the page trigger by the playing: shifter changes palette, notes splash complementary colors across screen
 * Select palette for visuals
 * Rhythm section: drums and bass
