@@ -2,6 +2,7 @@ var React = require('react');
 
 var ChordElement = require('./chord_element.jsx');
 var NoteElement  = require('./note_element.jsx');
+var ToneElement  = require('./tone_element.jsx');
 
 var Note       = require('./note.js');
 var MajorChord = require('./major_chord.js');
@@ -31,6 +32,15 @@ React.render(
 React.render(
   <ChordElement name="iii" keyCode="82" keyName="r" chord={ new MinorChord(400) } />,
   document.getElementById('iii-chord')
+);
+
+React.render(
+  <ToneElement name="Organ" keyCode="88"  keyName="x" note={ new Note(0) } />,
+  document.getElementById('organ')
+);
+React.render(
+  <ToneElement name="8-Bit" keyCode="67"  keyName="c" note={ new Note(0) } />,
+  document.getElementById('8-bit')
 );
 
 React.render(

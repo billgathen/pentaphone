@@ -19,4 +19,14 @@ Chord.prototype.stop = function() {
   this.note3.stop();
 }
 
+Chord.prototype.isToneKey = function(keyCode) {
+  return this.note1.isToneKey(keyCode);
+}
+
+Chord.prototype.changeTone = function(keyCode) {
+  this.note1.changeTone(keyCode);
+  this.note2.changeTone(keyCode);
+  this.note3.changeTone(keyCode);
+}
+
 module.exports = Chord;

@@ -1,17 +1,16 @@
 var React = require('react');
 
-var NoteElement = React.createClass({
+var ToneElement = React.createClass({
   getInitialState: function() {
     return {
-      classes: [ 'note' ]
+      classes: [ 'tone' ]
     }
   },
   componentDidMount: function() {
     var myCode = Number(this.props.keyCode);
     var self = this;
     document.addEventListener('keydown', function(e) {
-      if (e.keyCode === myCode) { self.pressed(); }
-      else if (self.isToneKey(e.keyCode)) { self.changeTone(e.keyCode); }
+      if (e.keyCode === myCode) { self.pressed(); };
     });
     document.addEventListener('keyup', function(e) {
       if (e.keyCode === myCode) { self.released(); };
@@ -19,7 +18,6 @@ var NoteElement = React.createClass({
   },
   pressed: function() {
     if (this.isntPressed()) {
-      this.props.note.start();
       this.setState({
         classes: this.state.classes.concat('pressed')
       });
@@ -27,18 +25,11 @@ var NoteElement = React.createClass({
   },
   released: function() {
     if (this.isPressed()) {
-      this.props.note.stop();
       this.state.classes.splice(this.state.classes.indexOf('pressed'),1);
       this.setState({
         classes: this.state.classes
       });
     }    
-  },
-  isToneKey: function(keyCode) {
-    return this.props.note.isToneKey(keyCode);
-  },
-  changeTone: function(keyCode) {
-    this.props.note.changeTone(keyCode);
   },
   isntPressed: function() {
     return this.state.classes.indexOf('pressed') === -1;
@@ -55,4 +46,4 @@ var NoteElement = React.createClass({
   }
 });
 
-module.exports = NoteElement;
+module.exports = ToneElement;

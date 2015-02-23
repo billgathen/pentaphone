@@ -10,7 +10,8 @@ var Chord = React.createClass({
     var myCode = Number(this.props.keyCode);
     var self = this;
     document.addEventListener('keydown', function(e) {
-      if (e.keyCode === myCode) { self.pressed(); };
+      if (e.keyCode === myCode) { self.pressed(); }
+      else if (self.isToneKey(e.keyCode)) { self.changeTone(e.keyCode); }
     });
     document.addEventListener('keyup', function(e) {
       if (e.keyCode === myCode) { self.released(); };
@@ -32,6 +33,12 @@ var Chord = React.createClass({
         classes: this.state.classes
       });
     }
+  },
+  isToneKey: function(keyCode) {
+    return this.props.chord.isToneKey(keyCode);
+  },
+  changeTone: function(keyCode) {
+    this.props.chord.changeTone(keyCode);
   },
   isntPressed: function() {
     return this.state.classes.indexOf('pressed') === -1;

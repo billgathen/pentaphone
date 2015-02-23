@@ -3,6 +3,7 @@ var React = require('react');
 
 var ChordElement = require('./chord_element.jsx');
 var NoteElement  = require('./note_element.jsx');
+var ToneElement  = require('./tone_element.jsx');
 
 var Note       = require('./note.js');
 var MajorChord = require('./major_chord.js');
@@ -35,6 +36,15 @@ React.render(
 );
 
 React.render(
+  React.createElement(ToneElement, {name: "Organ", keyCode: "88", keyName: "x", note:  new Note(0) }),
+  document.getElementById('organ')
+);
+React.render(
+  React.createElement(ToneElement, {name: "8-Bit", keyCode: "67", keyName: "c", note:  new Note(0) }),
+  document.getElementById('8-bit')
+);
+
+React.render(
   React.createElement(NoteElement, {name: "1", keyCode: "32", keyName: "<spacebar>", note:  new Note(0) }),
   document.getElementById('1-note')
 );
@@ -56,7 +66,7 @@ React.render(
 );
 
 
-},{"./chord_element.jsx":"/Users/bill/javascript/pentaphone/src/js/chord_element.jsx","./major_chord.js":"/Users/bill/javascript/pentaphone/src/js/major_chord.js","./minor_chord.js":"/Users/bill/javascript/pentaphone/src/js/minor_chord.js","./note.js":"/Users/bill/javascript/pentaphone/src/js/note.js","./note_element.jsx":"/Users/bill/javascript/pentaphone/src/js/note_element.jsx","react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
+},{"./chord_element.jsx":"/Users/bill/javascript/pentaphone/src/js/chord_element.jsx","./major_chord.js":"/Users/bill/javascript/pentaphone/src/js/major_chord.js","./minor_chord.js":"/Users/bill/javascript/pentaphone/src/js/minor_chord.js","./note.js":"/Users/bill/javascript/pentaphone/src/js/note.js","./note_element.jsx":"/Users/bill/javascript/pentaphone/src/js/note_element.jsx","./tone_element.jsx":"/Users/bill/javascript/pentaphone/src/js/tone_element.jsx","react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -18365,6 +18375,16 @@ Chord.prototype.stop = function() {
   this.note3.stop();
 }
 
+Chord.prototype.isToneKey = function(keyCode) {
+  return this.note1.isToneKey(keyCode);
+}
+
+Chord.prototype.changeTone = function(keyCode) {
+  this.note1.changeTone(keyCode);
+  this.note2.changeTone(keyCode);
+  this.note3.changeTone(keyCode);
+}
+
 module.exports = Chord;
 
 },{"./note.js":"/Users/bill/javascript/pentaphone/src/js/note.js"}],"/Users/bill/javascript/pentaphone/src/js/chord_element.jsx":[function(require,module,exports){
@@ -18380,7 +18400,8 @@ var Chord = React.createClass({displayName: "Chord",
     var myCode = Number(this.props.keyCode);
     var self = this;
     document.addEventListener('keydown', function(e) {
-      if (e.keyCode === myCode) { self.pressed(); };
+      if (e.keyCode === myCode) { self.pressed(); }
+      else if (self.isToneKey(e.keyCode)) { self.changeTone(e.keyCode); }
     });
     document.addEventListener('keyup', function(e) {
       if (e.keyCode === myCode) { self.released(); };
@@ -18402,6 +18423,12 @@ var Chord = React.createClass({displayName: "Chord",
         classes: this.state.classes
       });
     }
+  },
+  isToneKey: function(keyCode) {
+    return this.props.chord.isToneKey(keyCode);
+  },
+  changeTone: function(keyCode) {
+    this.props.chord.changeTone(keyCode);
   },
   isntPressed: function() {
     return this.state.classes.indexOf('pressed') === -1;
@@ -18427,8 +18454,10 @@ var MajorChord = function(root) {
   this.chord = new Chord(root, 0, 400, 700);
 }
 
-MajorChord.prototype.start = function() { this.chord.start(); }
-MajorChord.prototype.stop  = function() { this.chord.stop(); }
+MajorChord.prototype.start       = function() { this.chord.start(); }
+MajorChord.prototype.stop        = function() { this.chord.stop(); }
+MajorChord.prototype.isToneKey   = function(keyCode) { return this.chord.isToneKey(keyCode); }
+MajorChord.prototype.changeTone  = function(keyCode) { this.chord.changeTone(keyCode); }
 
 module.exports = MajorChord;
 
@@ -18439,19 +18468,26 @@ var MinorChord = function(root) {
   this.chord = new Chord(root, 0, 300, 700);
 }
 
-MinorChord.prototype.start = function() { this.chord.start(); }
-MinorChord.prototype.stop  = function() { this.chord.stop(); }
+MinorChord.prototype.start      = function() { this.chord.start(); }
+MinorChord.prototype.stop       = function() { this.chord.stop(); }
+MinorChord.prototype.isToneKey  = function(keyCode) { return this.chord.isToneKey(keyCode); }
+MinorChord.prototype.changeTone = function(keyCode) { this.chord.changeTone(keyCode); }
 
 module.exports = MinorChord;
 
 },{"./chord.js":"/Users/bill/javascript/pentaphone/src/js/chord.js"}],"/Users/bill/javascript/pentaphone/src/js/note.js":[function(require,module,exports){
 var ctx = new AudioContext();
 var root = 440;
-var normalVolume = 0.5;
+var defaultForm = "sine";
+var defaultGain = 0.5;
+var tones = {
+  88: { "form": "sine", "gain": 0.5 },
+  67: { "form": "square", "gain": 0.05 }
+}
 
 function osc(root, detune) {
   var osc = ctx.createOscillator();
-  osc.type = "sine";
+  osc.type = defaultForm;
   osc.frequency.value = root;
   osc.detune.value    = detune;
   osc.start();
@@ -18471,14 +18507,30 @@ var Note = function(detune) {
   this.osc = osc(root, detune);
   this.gainNode = gain();
   this.osc.connect(this.gainNode);
+  this.gain = defaultGain;
 }
 
 Note.prototype.start = function() {
-  this.gainNode.gain.value = normalVolume;
+  this.gainNode.gain.value = this.gain;
 }
 
 Note.prototype.stop = function() {
   this.gainNode.gain.value = 0;
+}
+
+Note.prototype.isToneKey = function(keyCode) {
+  var matched = false;
+  [ 88, 67 ].forEach(function(validKeyCode) {
+    if (keyCode === validKeyCode) {
+      matched = true;
+    }
+  });
+  return matched;
+}
+
+Note.prototype.changeTone = function(keyCode) {
+  this.osc.type = tones[keyCode]["form"];
+  this.gain = tones[keyCode]["gain"];
 }
 
 module.exports = Note;
@@ -18496,7 +18548,8 @@ var NoteElement = React.createClass({displayName: "NoteElement",
     var myCode = Number(this.props.keyCode);
     var self = this;
     document.addEventListener('keydown', function(e) {
-      if (e.keyCode === myCode) { self.pressed(); };
+      if (e.keyCode === myCode) { self.pressed(); }
+      else if (self.isToneKey(e.keyCode)) { self.changeTone(e.keyCode); }
     });
     document.addEventListener('keyup', function(e) {
       if (e.keyCode === myCode) { self.released(); };
@@ -18519,6 +18572,12 @@ var NoteElement = React.createClass({displayName: "NoteElement",
       });
     }    
   },
+  isToneKey: function(keyCode) {
+    return this.props.note.isToneKey(keyCode);
+  },
+  changeTone: function(keyCode) {
+    this.props.note.changeTone(keyCode);
+  },
   isntPressed: function() {
     return this.state.classes.indexOf('pressed') === -1;
   },
@@ -18535,6 +18594,57 @@ var NoteElement = React.createClass({displayName: "NoteElement",
 });
 
 module.exports = NoteElement;
+
+},{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/src/js/tone_element.jsx":[function(require,module,exports){
+var React = require('react');
+
+var ToneElement = React.createClass({displayName: "ToneElement",
+  getInitialState: function() {
+    return {
+      classes: [ 'tone' ]
+    }
+  },
+  componentDidMount: function() {
+    var myCode = Number(this.props.keyCode);
+    var self = this;
+    document.addEventListener('keydown', function(e) {
+      if (e.keyCode === myCode) { self.pressed(); };
+    });
+    document.addEventListener('keyup', function(e) {
+      if (e.keyCode === myCode) { self.released(); };
+    });
+  },
+  pressed: function() {
+    if (this.isntPressed()) {
+      this.setState({
+        classes: this.state.classes.concat('pressed')
+      });
+    }    
+  },
+  released: function() {
+    if (this.isPressed()) {
+      this.state.classes.splice(this.state.classes.indexOf('pressed'),1);
+      this.setState({
+        classes: this.state.classes
+      });
+    }    
+  },
+  isntPressed: function() {
+    return this.state.classes.indexOf('pressed') === -1;
+  },
+  isPressed: function() {
+    return ! this.isntPressed();
+  },
+  render: function() {
+    return React.createElement("span", null, 
+        React.createElement("strong", {className:  this.state.classes.join(' ') },  this.props.name), 
+        React.createElement("span", null, " "), 
+        React.createElement("small", null,  this.props.keyName)
+      );
+  }
+});
+
+module.exports = ToneElement;
 
 },{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}]},{},["./src/js/app.jsx"]);
 
