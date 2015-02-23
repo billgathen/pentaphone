@@ -4,26 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles/app.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <title>Pentaphone</title>
 </head>
 <body>
-  <h1>The Pentaphone</h1>
-  <div id="keyboard">
-    <div id="chords">
-      <div id="I-chord"></div>
-      <div id="IV-chord"></div>
-      <div id="V-chord"></div>
-      <div id="vi-chord"></div>
-      <div id="ii-chord"></div>
-      <div id="iii-chord"></div>
-    </div>
+  <div class="container">
+    <h1>The Pentaphone</h1>
+    <div id="keyboard">
+      <div id="chords">
+        <div id="relative-minor-chords">
+          <span id="vi-chord" class="control-key"></span>
+          <span id="ii-chord" class="control-key"></span>
+          <span id="iii-chord" class="control-key"></span>
+        </div>
 
-    <div id="notes">
-      <div id="1-note"></div>
-      <div id="2-note"></div>
-      <div id="3-note"></div>
-      <div id="5-note"></div>
-      <div id="6-note"></div>
+        <div id="major-chords">
+          <span id="I-chord" class="control-key"></span>
+          <span id="IV-chord" class="control-key"></span>
+          <span id="V-chord" class="control-key"></span>
+        </div>
+      </div>
+
+      <div id="notes">
+        <div id="fingers">
+          <span id="2-note" class="control-key"></span>
+          <span id="3-note" class="control-key"></span>
+          <span id="5-note" class="control-key"></span>
+          <span id="6-note" class="control-key"></span>
+        </div>
+        <div id="thumb">
+          <span id="1-note" class="control-key"></span>
+        </div>
+      </div>
     </div>
   </div>
 
