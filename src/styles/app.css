@@ -7,8 +7,20 @@
   padding: 1em;
 }
 
+#major-chords {
+  padding-left: 3em;
+}
+
 #notes {
   float: left;
+  padding: 1em;
+  margin-top: 3.5em;
+}
+#fingers {
+  margin-left: 3em;
+}
+
+.control-key {
   padding: 1em;
 }
 
