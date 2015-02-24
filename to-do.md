@@ -10,7 +10,7 @@
 
 ## How to keep the dist dir updated
 
-* gulp watch (note that JS/JSX files only update when you change app.jsx: I'll fix that eventually)
+* gulp watch
 
 ## To Do
 
