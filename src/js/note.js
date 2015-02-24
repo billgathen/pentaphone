@@ -3,8 +3,8 @@ var root = 440;
 var defaultForm = "sine";
 var defaultGain = 0.5;
 var tones = {
-  88: { "form": "sine", "gain": 0.5 },
-  67: { "form": "square", "gain": 0.05 }
+  85: { "form": "sine", "gain": 0.5 },
+  73: { "form": "square", "gain": 0.05 }
 }
 
 function osc(root, detune) {
@@ -42,7 +42,7 @@ Note.prototype.stop = function() {
 
 Note.prototype.isToneKey = function(keyCode) {
   var matched = false;
-  [ 88, 67 ].forEach(function(validKeyCode) {
+  [ 85, 73 ].forEach(function(validKeyCode) {
     if (keyCode === validKeyCode) {
       matched = true;
     }

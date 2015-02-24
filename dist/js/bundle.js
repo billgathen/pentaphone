@@ -36,11 +36,11 @@ React.render(
 );
 
 React.render(
-  React.createElement(ToneElement, {name: "Organ", keyCode: "88", keyName: "x", note:  new Note(0) }),
+  React.createElement(ToneElement, {name: "Organ", keyCode: "85", keyName: "u"}),
   document.getElementById('organ')
 );
 React.render(
-  React.createElement(ToneElement, {name: "8-Bit", keyCode: "67", keyName: "c", note:  new Note(0) }),
+  React.createElement(ToneElement, {name: "8-Bit", keyCode: "73", keyName: "i"}),
   document.getElementById('8-bit')
 );
 
@@ -18481,8 +18481,8 @@ var root = 440;
 var defaultForm = "sine";
 var defaultGain = 0.5;
 var tones = {
-  88: { "form": "sine", "gain": 0.5 },
-  67: { "form": "square", "gain": 0.05 }
+  85: { "form": "sine", "gain": 0.5 },
+  73: { "form": "square", "gain": 0.05 }
 }
 
 function osc(root, detune) {
@@ -18520,7 +18520,7 @@ Note.prototype.stop = function() {
 
 Note.prototype.isToneKey = function(keyCode) {
   var matched = false;
-  [ 88, 67 ].forEach(function(validKeyCode) {
+  [ 85, 73 ].forEach(function(validKeyCode) {
     if (keyCode === validKeyCode) {
       matched = true;
     }

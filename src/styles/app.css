@@ -12,7 +12,9 @@
 }
 
 #tones {
-  padding-left: 5.5em;
+  padding-left: 2em;
+  padding-bottom: 0.5em;
+  padding-top: 0em;
 }
 
 .tone {
@@ -23,7 +25,7 @@
 #notes {
   float: left;
   padding: 1em;
-  margin-top: 3.5em;
+  margin-top: 0.75em;
 }
 #fingers {
   margin-left: 3em;

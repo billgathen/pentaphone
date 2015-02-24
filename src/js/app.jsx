@@ -35,11 +35,11 @@ React.render(
 );
 
 React.render(
-  <ToneElement name="Organ" keyCode="88"  keyName="x" note={ new Note(0) } />,
+  <ToneElement name="Organ" keyCode="85"  keyName="u" />,
   document.getElementById('organ')
 );
 React.render(
-  <ToneElement name="8-Bit" keyCode="67"  keyName="c" note={ new Note(0) } />,
+  <ToneElement name="8-Bit" keyCode="73"  keyName="i" />,
   document.getElementById('8-bit')
 );
 

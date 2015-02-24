@@ -12,7 +12,7 @@ bundler.transform('reactify');
 bundler.on('update', bundle);
 
 gulp.task('watch', [ 'html', 'styles' ], function() {
-  gulp.watch('src/html/**/*.html', ['html']);
+  gulp.watch('src/**/*.html', ['html']);
   gulp.watch('src/styles/**/*.css', ['styles']);
   gulp.watch('src/js/**/*', function() { bundle(); });
 });
