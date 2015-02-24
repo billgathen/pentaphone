@@ -31,7 +31,7 @@
 * DONE Update gh-pages home page to link to playable example
 * DONE Move LH keys to s, d, f and w, e, r (LH home row)
 * DONE Add Bootstrap and clean up interface
-* Select waveform for tone, adjusting gain as necessary: z, x, c, v
+* DONE Select waveform for tone, adjusting gain as necessary: x, c
 * Split tones: chords based on z, x, c, v and notes based on m, ,, ., /
 * Pressing a shifter changes the pentatonic, which stays there until shifted again
 * Visual elements on the page trigger by the playing: shifter changes palette, notes splash complementary colors across screen
