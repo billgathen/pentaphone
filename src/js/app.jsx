@@ -60,6 +60,6 @@ React.render(
   document.getElementById('5-note')
 );
 React.render(
-  <NoteElement name="6" keyCode="186" keyName=";" note={ new Note(900) } />,
+  <NoteElement name="6" keyCode="186,59" keyName=";" note={ new Note(900) } />,
   document.getElementById('6-note')
 );

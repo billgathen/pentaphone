@@ -61,7 +61,7 @@ React.render(
   document.getElementById('5-note')
 );
 React.render(
-  React.createElement(NoteElement, {name: "6", keyCode: "186", keyName: ";", note:  new Note(900) }),
+  React.createElement(NoteElement, {name: "6", keyCode: "186,59", keyName: ";", note:  new Note(900) }),
   document.getElementById('6-note')
 );
 
@@ -18548,12 +18548,21 @@ var NoteElement = React.createClass({displayName: "NoteElement",
     var myCode = Number(this.props.keyCode);
     var self = this;
     document.addEventListener('keydown', function(e) {
-      if (e.keyCode === myCode) { self.pressed(); }
+      if (self.matches(e.keyCode)) { self.pressed(); }
       else if (self.isToneKey(e.keyCode)) { self.changeTone(e.keyCode); }
     });
     document.addEventListener('keyup', function(e) {
-      if (e.keyCode === myCode) { self.released(); };
+      if (self.matches(e.keyCode)) { self.released(); };
     });
+  },
+  matches: function(keyCode) {
+    var matched = false;
+    this.props.keyCode.split(',').forEach(function(myCode) {
+      if (String(keyCode) === myCode) {
+        matched = true;
+      }
+    });
+    return matched;
   },
   pressed: function() {
     if (this.isntPressed()) {

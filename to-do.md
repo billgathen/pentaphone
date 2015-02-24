@@ -12,6 +12,10 @@
 
 * gulp watch
 
+## Wondering about keycodes? They do vary a bit across browsers
+
+* http://www.javascripter.net/faq/keycodes.htm
+
 ## To Do
 
 * DONE Skeletal index.html with React components
@@ -32,6 +36,7 @@
 * DONE Move LH keys to s, d, f and w, e, r (LH home row)
 * DONE Add Bootstrap and clean up interface
 * DONE Select waveform for tone, adjusting gain as necessary: x, c
+* DONE Accept keyCode 59 for ; to support Firefox (Thanks Ben!)
 * Split tones: chords based on z, x, c, v and notes based on m, ,, ., /
 * Pressing a shifter changes the pentatonic, which stays there until shifted again
 * Visual elements on the page trigger by the playing: shifter changes palette, notes splash complementary colors across screen
