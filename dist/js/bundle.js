@@ -18380,10 +18380,6 @@ Chord.prototype.stop = function() {
   this.note3.stop();
 }
 
-Chord.prototype.isToneKey = function(keyCode) {
-  return this.note1.isToneKey(keyCode);
-}
-
 Chord.prototype.changeTone = function(keyCode) {
   this.note1.changeTone(keyCode);
   this.note2.changeTone(keyCode);
@@ -18483,7 +18479,6 @@ var KeyListenerElement = React.createClass({displayName: "KeyListenerElement",
     document.addEventListener('keydown', function(e) {
       var eventType = self.state.eventTypeForCode[String(e.keyCode)];
       if (eventType) {
-        console.log(eventType + '-start');
         var evt = new document.defaultView.CustomEvent(eventType + '-start');
         document.dispatchEvent(evt);
       }
@@ -18652,7 +18647,6 @@ var ToneElement = React.createClass({displayName: "ToneElement",
   componentDidMount: function() {
     var myCode = Number(this.props.keyCode);
     var self = this;
-    console.log(this.props.name + '-start');
     document.addEventListener(this.props.name + '-start', function(e) {
       self.pressed();
     });

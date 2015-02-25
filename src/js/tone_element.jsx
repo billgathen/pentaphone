@@ -9,7 +9,6 @@ var ToneElement = React.createClass({
   componentDidMount: function() {
     var myCode = Number(this.props.keyCode);
     var self = this;
-    console.log(this.props.name + '-start');
     document.addEventListener(this.props.name + '-start', function(e) {
       self.pressed();
     });
