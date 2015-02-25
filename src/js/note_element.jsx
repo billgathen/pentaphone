@@ -7,35 +7,30 @@ var NoteElement = React.createClass({
     }
   },
   componentDidMount: function() {
-    var myCode = Number(this.props.keyCode);
     var self = this;
-    document.addEventListener('keydown', function(e) {
-      if (self.matches(e.keyCode)) { self.pressed(); }
-      else if (self.isToneKey(e.keyCode)) { self.changeTone(e.keyCode); }
+    document.addEventListener(this.props.name + '-start', function(e) {
+      self.started();
     });
-    document.addEventListener('keyup', function(e) {
-      if (self.matches(e.keyCode)) { self.released(); };
+    document.addEventListener(this.props.name + '-stop', function(e) {
+      self.stopped();
+    });
+    document.addEventListener('Organ-start', function(e) {
+      self.changeTone(85);
+    });
+    document.addEventListener('8-Bit-start', function(e) {
+      self.changeTone(73);
     });
   },
-  matches: function(keyCode) {
-    var matched = false;
-    this.props.keyCode.split(',').forEach(function(myCode) {
-      if (String(keyCode) === myCode) {
-        matched = true;
-      }
-    });
-    return matched;
-  },
-  pressed: function() {
-    if (this.isntPressed()) {
+  started: function() {
+    if (this.isntStarted()) {
       this.props.note.start();
       this.setState({
         classes: this.state.classes.concat('pressed')
       });
     }    
   },
-  released: function() {
-    if (this.isPressed()) {
+  stopped: function() {
+    if (this.isStarted()) {
       this.props.note.stop();
       this.state.classes.splice(this.state.classes.indexOf('pressed'),1);
       this.setState({
@@ -43,17 +38,14 @@ var NoteElement = React.createClass({
       });
     }    
   },
-  isToneKey: function(keyCode) {
-    return this.props.note.isToneKey(keyCode);
-  },
   changeTone: function(keyCode) {
     this.props.note.changeTone(keyCode);
   },
-  isntPressed: function() {
+  isntStarted: function() {
     return this.state.classes.indexOf('pressed') === -1;
   },
-  isPressed: function() {
-    return ! this.isntPressed();
+  isStarted: function() {
+    return ! this.isntStarted();
   },
   render: function() {
     return <span>

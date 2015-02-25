@@ -9,11 +9,12 @@ var ToneElement = React.createClass({
   componentDidMount: function() {
     var myCode = Number(this.props.keyCode);
     var self = this;
-    document.addEventListener('keydown', function(e) {
-      if (e.keyCode === myCode) { self.pressed(); };
+    console.log(this.props.name + '-start');
+    document.addEventListener(this.props.name + '-start', function(e) {
+      self.pressed();
     });
-    document.addEventListener('keyup', function(e) {
-      if (e.keyCode === myCode) { self.released(); };
+    document.addEventListener(this.props.name + '-stop', function(e) {
+      self.released();
     });
   },
   pressed: function() {

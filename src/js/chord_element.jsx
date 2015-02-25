@@ -7,44 +7,46 @@ var Chord = React.createClass({
     }
   },
   componentDidMount: function() {
-    var myCode = Number(this.props.keyCode);
+    var name = this.props.name;
     var self = this;
-    document.addEventListener('keydown', function(e) {
-      if (e.keyCode === myCode) { self.pressed(); }
-      else if (self.isToneKey(e.keyCode)) { self.changeTone(e.keyCode); }
+    document.addEventListener(name + '-start', function(e) {
+      self.started();
     });
-    document.addEventListener('keyup', function(e) {
-      if (e.keyCode === myCode) { self.released(); };
+    document.addEventListener(name + '-stop', function(e) {
+      self.stopped();
+    });
+    document.addEventListener('Organ-start', function(e) {
+      self.changeTone(85);
+    });
+    document.addEventListener('8-Bit-start', function(e) {
+      self.changeTone(73);
     });
   },
-  pressed: function() {
-    if (this.isntPressed()) {
+  started: function() {
+    if (this.isntStarted()) {
       this.props.chord.start();
       this.setState({
-        classes: this.state.classes.concat('pressed')
+        classes: this.state.classes.concat('started')
       });
     }    
   },
-  released: function() {
-    if (this.isPressed()) {
+  stopped: function() {
+    if (this.isStarted()) {
       this.props.chord.stop();
-      this.state.classes.splice(this.state.classes.indexOf('pressed'),1);
+      this.state.classes.splice(this.state.classes.indexOf('started'),1);
       this.setState({
         classes: this.state.classes
       });
     }
   },
-  isToneKey: function(keyCode) {
-    return this.props.chord.isToneKey(keyCode);
-  },
   changeTone: function(keyCode) {
     this.props.chord.changeTone(keyCode);
   },
-  isntPressed: function() {
-    return this.state.classes.indexOf('pressed') === -1;
+  isntStarted: function() {
+    return this.state.classes.indexOf('started') === -1;
   },
-  isPressed: function() {
-    return ! this.isntPressed();
+  isStarted: function() {
+    return ! this.isntStarted();
   },
   render: function() {
     return <span>

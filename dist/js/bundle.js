@@ -1,72 +1,77 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"./src/js/app.jsx":[function(require,module,exports){
 var React = require('react');
 
-var ChordElement = require('./chord_element.jsx');
-var NoteElement  = require('./note_element.jsx');
-var ToneElement  = require('./tone_element.jsx');
+var ChordElement       = require('./chord_element.jsx');
+var NoteElement        = require('./note_element.jsx');
+var ToneElement        = require('./tone_element.jsx');
+var KeyListenerElement = require('./key_listener_element.jsx');
 
 var Note       = require('./note.js');
 var MajorChord = require('./major_chord.js');
 var MinorChord = require('./minor_chord.js');
 
 React.render(
-  React.createElement(ChordElement, {name: "I", keyCode: "83", keyName: "s", chord:  new MajorChord(0) }),
+  React.createElement(ChordElement, {name: "I", keyName: "s", chord:  new MajorChord(0) }),
   document.getElementById('I-chord')
 );
 React.render(
-  React.createElement(ChordElement, {name: "IV", keyCode: "68", keyName: "d", chord:  new MajorChord(500) }),
+  React.createElement(ChordElement, {name: "IV", keyName: "d", chord:  new MajorChord(500) }),
   document.getElementById('IV-chord')
 );
 React.render(
-  React.createElement(ChordElement, {name: "V", keyCode: "70", keyName: "f", chord:  new MajorChord(700) }),
+  React.createElement(ChordElement, {name: "V", keyName: "f", chord:  new MajorChord(700) }),
   document.getElementById('V-chord')
 );
 
 React.render(
-  React.createElement(ChordElement, {name: "vi", keyCode: "87", keyName: "w", chord:  new MinorChord(900) }),
+  React.createElement(ChordElement, {name: "vi", keyName: "w", chord:  new MinorChord(900) }),
   document.getElementById('vi-chord')
 );
 React.render(
-  React.createElement(ChordElement, {name: "ii", keyCode: "69", keyName: "e", chord:  new MinorChord(200) }),
+  React.createElement(ChordElement, {name: "ii", keyName: "e", chord:  new MinorChord(200) }),
   document.getElementById('ii-chord')
 );
 React.render(
-  React.createElement(ChordElement, {name: "iii", keyCode: "82", keyName: "r", chord:  new MinorChord(400) }),
+  React.createElement(ChordElement, {name: "iii", keyName: "r", chord:  new MinorChord(400) }),
   document.getElementById('iii-chord')
 );
 
 React.render(
-  React.createElement(ToneElement, {name: "Organ", keyCode: "85", keyName: "u"}),
+  React.createElement(ToneElement, {name: "Organ", keyName: "u"}),
   document.getElementById('organ')
 );
 React.render(
-  React.createElement(ToneElement, {name: "8-Bit", keyCode: "73", keyName: "i"}),
+  React.createElement(ToneElement, {name: "8-Bit", keyName: "i"}),
   document.getElementById('8-bit')
 );
 
 React.render(
-  React.createElement(NoteElement, {name: "1", keyCode: "32", keyName: "<spacebar>", note:  new Note(0) }),
+  React.createElement(NoteElement, {name: "1", keyName: "<spacebar>", note:  new Note(0) }),
   document.getElementById('1-note')
 );
 React.render(
-  React.createElement(NoteElement, {name: "2", keyCode: "74", keyName: "j", note:  new Note(200) }),
+  React.createElement(NoteElement, {name: "2", keyName: "j", note:  new Note(200) }),
   document.getElementById('2-note')
 );
 React.render(
-  React.createElement(NoteElement, {name: "3", keyCode: "75", keyName: "k", note:  new Note(400) }),
+  React.createElement(NoteElement, {name: "3", keyName: "k", note:  new Note(400) }),
   document.getElementById('3-note')
 );
 React.render(
-  React.createElement(NoteElement, {name: "5", keyCode: "76", keyName: "l", note:  new Note(700) }),
+  React.createElement(NoteElement, {name: "5", keyName: "l", note:  new Note(700) }),
   document.getElementById('5-note')
 );
 React.render(
-  React.createElement(NoteElement, {name: "6", keyCode: "186,59", keyName: ";", note:  new Note(900) }),
+  React.createElement(NoteElement, {name: "6", keyName: ";", note:  new Note(900) }),
   document.getElementById('6-note')
 );
 
+React.render(
+  React.createElement(KeyListenerElement, null),
+  document.getElementById('key-listener')
+);
 
-},{"./chord_element.jsx":"/Users/bill/javascript/pentaphone/src/js/chord_element.jsx","./major_chord.js":"/Users/bill/javascript/pentaphone/src/js/major_chord.js","./minor_chord.js":"/Users/bill/javascript/pentaphone/src/js/minor_chord.js","./note.js":"/Users/bill/javascript/pentaphone/src/js/note.js","./note_element.jsx":"/Users/bill/javascript/pentaphone/src/js/note_element.jsx","./tone_element.jsx":"/Users/bill/javascript/pentaphone/src/js/tone_element.jsx","react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
+},{"./chord_element.jsx":"/Users/bill/javascript/pentaphone/src/js/chord_element.jsx","./key_listener_element.jsx":"/Users/bill/javascript/pentaphone/src/js/key_listener_element.jsx","./major_chord.js":"/Users/bill/javascript/pentaphone/src/js/major_chord.js","./minor_chord.js":"/Users/bill/javascript/pentaphone/src/js/minor_chord.js","./note.js":"/Users/bill/javascript/pentaphone/src/js/note.js","./note_element.jsx":"/Users/bill/javascript/pentaphone/src/js/note_element.jsx","./tone_element.jsx":"/Users/bill/javascript/pentaphone/src/js/tone_element.jsx","react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -18397,44 +18402,46 @@ var Chord = React.createClass({displayName: "Chord",
     }
   },
   componentDidMount: function() {
-    var myCode = Number(this.props.keyCode);
+    var name = this.props.name;
     var self = this;
-    document.addEventListener('keydown', function(e) {
-      if (e.keyCode === myCode) { self.pressed(); }
-      else if (self.isToneKey(e.keyCode)) { self.changeTone(e.keyCode); }
+    document.addEventListener(name + '-start', function(e) {
+      self.started();
     });
-    document.addEventListener('keyup', function(e) {
-      if (e.keyCode === myCode) { self.released(); };
+    document.addEventListener(name + '-stop', function(e) {
+      self.stopped();
+    });
+    document.addEventListener('Organ-start', function(e) {
+      self.changeTone(85);
+    });
+    document.addEventListener('8-Bit-start', function(e) {
+      self.changeTone(73);
     });
   },
-  pressed: function() {
-    if (this.isntPressed()) {
+  started: function() {
+    if (this.isntStarted()) {
       this.props.chord.start();
       this.setState({
-        classes: this.state.classes.concat('pressed')
+        classes: this.state.classes.concat('started')
       });
     }    
   },
-  released: function() {
-    if (this.isPressed()) {
+  stopped: function() {
+    if (this.isStarted()) {
       this.props.chord.stop();
-      this.state.classes.splice(this.state.classes.indexOf('pressed'),1);
+      this.state.classes.splice(this.state.classes.indexOf('started'),1);
       this.setState({
         classes: this.state.classes
       });
     }
   },
-  isToneKey: function(keyCode) {
-    return this.props.chord.isToneKey(keyCode);
-  },
   changeTone: function(keyCode) {
     this.props.chord.changeTone(keyCode);
   },
-  isntPressed: function() {
-    return this.state.classes.indexOf('pressed') === -1;
+  isntStarted: function() {
+    return this.state.classes.indexOf('started') === -1;
   },
-  isPressed: function() {
-    return ! this.isntPressed();
+  isStarted: function() {
+    return ! this.isntStarted();
   },
   render: function() {
     return React.createElement("span", null, 
@@ -18447,6 +18454,55 @@ var Chord = React.createClass({displayName: "Chord",
 
 module.exports = Chord;
 
+},{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/src/js/key_listener_element.jsx":[function(require,module,exports){
+var React = require('react');
+
+var KeyListenerElement = React.createClass({displayName: "KeyListenerElement",
+  getInitialState: function() {
+    return {
+      eventTypeForCode: {
+        '83':  'I',
+        '68':  'IV',
+        '70':  'V',
+        '87':  'vi',
+        '69':  'ii',
+        '82':  'iii',
+        '85':  'Organ',
+        '73':  '8-Bit',
+        '32':  '1',
+        '74':  '2',
+        '75':  '3',
+        '76':  '5',
+        '59':  '6',
+        '186': '6'
+      }
+    }
+  },
+  componentDidMount: function() {
+    var self = this;
+    document.addEventListener('keydown', function(e) {
+      var eventType = self.state.eventTypeForCode[String(e.keyCode)];
+      if (eventType) {
+        console.log(eventType + '-start');
+        var evt = new document.defaultView.CustomEvent(eventType + '-start');
+        document.dispatchEvent(evt);
+      }
+    });
+    document.addEventListener('keyup', function(e) {
+      var eventType = self.state.eventTypeForCode[String(e.keyCode)];
+      if (eventType) {
+        var evt = new document.defaultView.CustomEvent(eventType + '-stop');
+        document.dispatchEvent(evt);
+      }
+    });
+  },
+  render: function() {
+    return React.createElement("span", {className: "key-listener"});
+  }
+});
+
+module.exports = KeyListenerElement;
+
 },{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/src/js/major_chord.js":[function(require,module,exports){
 var Chord = require('./chord.js');
 
@@ -18456,7 +18512,6 @@ var MajorChord = function(root) {
 
 MajorChord.prototype.start       = function() { this.chord.start(); }
 MajorChord.prototype.stop        = function() { this.chord.stop(); }
-MajorChord.prototype.isToneKey   = function(keyCode) { return this.chord.isToneKey(keyCode); }
 MajorChord.prototype.changeTone  = function(keyCode) { this.chord.changeTone(keyCode); }
 
 module.exports = MajorChord;
@@ -18470,7 +18525,6 @@ var MinorChord = function(root) {
 
 MinorChord.prototype.start      = function() { this.chord.start(); }
 MinorChord.prototype.stop       = function() { this.chord.stop(); }
-MinorChord.prototype.isToneKey  = function(keyCode) { return this.chord.isToneKey(keyCode); }
 MinorChord.prototype.changeTone = function(keyCode) { this.chord.changeTone(keyCode); }
 
 module.exports = MinorChord;
@@ -18518,16 +18572,6 @@ Note.prototype.stop = function() {
   this.gainNode.gain.value = 0;
 }
 
-Note.prototype.isToneKey = function(keyCode) {
-  var matched = false;
-  [ 85, 73 ].forEach(function(validKeyCode) {
-    if (keyCode === validKeyCode) {
-      matched = true;
-    }
-  });
-  return matched;
-}
-
 Note.prototype.changeTone = function(keyCode) {
   this.osc.type = tones[keyCode]["form"];
   this.gain = tones[keyCode]["gain"];
@@ -18545,35 +18589,30 @@ var NoteElement = React.createClass({displayName: "NoteElement",
     }
   },
   componentDidMount: function() {
-    var myCode = Number(this.props.keyCode);
     var self = this;
-    document.addEventListener('keydown', function(e) {
-      if (self.matches(e.keyCode)) { self.pressed(); }
-      else if (self.isToneKey(e.keyCode)) { self.changeTone(e.keyCode); }
+    document.addEventListener(this.props.name + '-start', function(e) {
+      self.started();
     });
-    document.addEventListener('keyup', function(e) {
-      if (self.matches(e.keyCode)) { self.released(); };
+    document.addEventListener(this.props.name + '-stop', function(e) {
+      self.stopped();
+    });
+    document.addEventListener('Organ-start', function(e) {
+      self.changeTone(85);
+    });
+    document.addEventListener('8-Bit-start', function(e) {
+      self.changeTone(73);
     });
   },
-  matches: function(keyCode) {
-    var matched = false;
-    this.props.keyCode.split(',').forEach(function(myCode) {
-      if (String(keyCode) === myCode) {
-        matched = true;
-      }
-    });
-    return matched;
-  },
-  pressed: function() {
-    if (this.isntPressed()) {
+  started: function() {
+    if (this.isntStarted()) {
       this.props.note.start();
       this.setState({
         classes: this.state.classes.concat('pressed')
       });
     }    
   },
-  released: function() {
-    if (this.isPressed()) {
+  stopped: function() {
+    if (this.isStarted()) {
       this.props.note.stop();
       this.state.classes.splice(this.state.classes.indexOf('pressed'),1);
       this.setState({
@@ -18581,17 +18620,14 @@ var NoteElement = React.createClass({displayName: "NoteElement",
       });
     }    
   },
-  isToneKey: function(keyCode) {
-    return this.props.note.isToneKey(keyCode);
-  },
   changeTone: function(keyCode) {
     this.props.note.changeTone(keyCode);
   },
-  isntPressed: function() {
+  isntStarted: function() {
     return this.state.classes.indexOf('pressed') === -1;
   },
-  isPressed: function() {
-    return ! this.isntPressed();
+  isStarted: function() {
+    return ! this.isntStarted();
   },
   render: function() {
     return React.createElement("span", null, 
@@ -18616,11 +18652,12 @@ var ToneElement = React.createClass({displayName: "ToneElement",
   componentDidMount: function() {
     var myCode = Number(this.props.keyCode);
     var self = this;
-    document.addEventListener('keydown', function(e) {
-      if (e.keyCode === myCode) { self.pressed(); };
+    console.log(this.props.name + '-start');
+    document.addEventListener(this.props.name + '-start', function(e) {
+      self.pressed();
     });
-    document.addEventListener('keyup', function(e) {
-      if (e.keyCode === myCode) { self.released(); };
+    document.addEventListener(this.props.name + '-stop', function(e) {
+      self.released();
     });
   },
   pressed: function() {

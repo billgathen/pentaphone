@@ -49,6 +49,10 @@
   border: 1px solid black;
 }
 
+.started {
+  border: 1px solid black;
+}
+
 .link {
   padding: 1em;
 }

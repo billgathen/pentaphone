@@ -37,6 +37,7 @@
 * DONE Add Bootstrap and clean up interface
 * DONE Select waveform for tone, adjusting gain as necessary: x, c
 * DONE Accept keyCode 59 for ; to support Firefox (Thanks Ben!)
+* DONE Extract key-listening to dedicated element which emits key-specific events: elements listen only for those
 * Split tones: chords based on z, x, c, v and notes based on m, ,, ., /
 * Pressing a shifter changes the pentatonic, which stays there until shifted again
 * Visual elements on the page trigger by the playing: shifter changes palette, notes splash complementary colors across screen
@@ -49,3 +50,5 @@
 * Number keys trigger rhythms, allowing shifts within songs
 * Rhythms trigger visuals, too
 * Instructions show on page, but can be toggled on/off: effects happen behind
+* Safari requires window.webkitAudioContext: make it work there
+* Other problems on Safari, too: doesn't recognize events? investigate later

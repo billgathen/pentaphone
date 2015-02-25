@@ -40,16 +40,6 @@ Note.prototype.stop = function() {
   this.gainNode.gain.value = 0;
 }
 
-Note.prototype.isToneKey = function(keyCode) {
-  var matched = false;
-  [ 85, 73 ].forEach(function(validKeyCode) {
-    if (keyCode === validKeyCode) {
-      matched = true;
-    }
-  });
-  return matched;
-}
-
 Note.prototype.changeTone = function(keyCode) {
   this.osc.type = tones[keyCode]["form"];
   this.gain = tones[keyCode]["gain"];

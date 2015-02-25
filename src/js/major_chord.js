@@ -6,7 +6,6 @@ var MajorChord = function(root) {
 
 MajorChord.prototype.start       = function() { this.chord.start(); }
 MajorChord.prototype.stop        = function() { this.chord.stop(); }
-MajorChord.prototype.isToneKey   = function(keyCode) { return this.chord.isToneKey(keyCode); }
 MajorChord.prototype.changeTone  = function(keyCode) { this.chord.changeTone(keyCode); }
 
 module.exports = MajorChord;
