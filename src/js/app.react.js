@@ -1,9 +1,9 @@
 var React = require('react');
 
-var ChordElement       = require('./chord_element.jsx');
-var NoteElement        = require('./note_element.jsx');
-var ToneElement        = require('./tone_element.jsx');
-var KeyListenerElement = require('./key_listener_element.jsx');
+var ChordElement       = require('./chord_element.react');
+var NoteElement        = require('./note_element.react');
+var ToneElement        = require('./tone_element.react');
+var KeyListenerElement = require('./key_listener_element.react');
 
 var Note       = require('./note.js');
 var MajorChord = require('./major_chord.js');

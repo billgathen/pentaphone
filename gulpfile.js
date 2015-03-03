@@ -7,7 +7,7 @@ var watchify = require('watchify');
 var browserify = require('browserify');
 var notify = require('gulp-notify');
 
-var bundler = watchify(browserify('./src/js/app.jsx', watchify.args));
+var bundler = watchify(browserify('./src/js/app.react.js', watchify.args));
 bundler.transform('reactify');
 bundler.on('update', bundle);
 

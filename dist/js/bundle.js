@@ -1,10 +1,10 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"./src/js/app.jsx":[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"./src/js/app.react.js":[function(require,module,exports){
 var React = require('react');
 
-var ChordElement       = require('./chord_element.jsx');
-var NoteElement        = require('./note_element.jsx');
-var ToneElement        = require('./tone_element.jsx');
-var KeyListenerElement = require('./key_listener_element.jsx');
+var ChordElement       = require('./chord_element.react');
+var NoteElement        = require('./note_element.react');
+var ToneElement        = require('./tone_element.react');
+var KeyListenerElement = require('./key_listener_element.react');
 
 var Note       = require('./note.js');
 var MajorChord = require('./major_chord.js');
@@ -71,7 +71,7 @@ React.render(
   document.getElementById('key-listener')
 );
 
-},{"./chord_element.jsx":"/Users/bill/javascript/pentaphone/src/js/chord_element.jsx","./key_listener_element.jsx":"/Users/bill/javascript/pentaphone/src/js/key_listener_element.jsx","./major_chord.js":"/Users/bill/javascript/pentaphone/src/js/major_chord.js","./minor_chord.js":"/Users/bill/javascript/pentaphone/src/js/minor_chord.js","./note.js":"/Users/bill/javascript/pentaphone/src/js/note.js","./note_element.jsx":"/Users/bill/javascript/pentaphone/src/js/note_element.jsx","./tone_element.jsx":"/Users/bill/javascript/pentaphone/src/js/tone_element.jsx","react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
+},{"./chord_element.react":"/Users/bill/javascript/pentaphone/src/js/chord_element.react.js","./key_listener_element.react":"/Users/bill/javascript/pentaphone/src/js/key_listener_element.react.js","./major_chord.js":"/Users/bill/javascript/pentaphone/src/js/major_chord.js","./minor_chord.js":"/Users/bill/javascript/pentaphone/src/js/minor_chord.js","./note.js":"/Users/bill/javascript/pentaphone/src/js/note.js","./note_element.react":"/Users/bill/javascript/pentaphone/src/js/note_element.react.js","./tone_element.react":"/Users/bill/javascript/pentaphone/src/js/tone_element.react.js","react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -18388,7 +18388,7 @@ Chord.prototype.changeTone = function(keyCode) {
 
 module.exports = Chord;
 
-},{"./note.js":"/Users/bill/javascript/pentaphone/src/js/note.js"}],"/Users/bill/javascript/pentaphone/src/js/chord_element.jsx":[function(require,module,exports){
+},{"./note.js":"/Users/bill/javascript/pentaphone/src/js/note.js"}],"/Users/bill/javascript/pentaphone/src/js/chord_element.react.js":[function(require,module,exports){
 var React = require('react');
 
 var Chord = React.createClass({displayName: "Chord",
@@ -18450,7 +18450,7 @@ var Chord = React.createClass({displayName: "Chord",
 
 module.exports = Chord;
 
-},{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/src/js/key_listener_element.jsx":[function(require,module,exports){
+},{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/src/js/key_listener_element.react.js":[function(require,module,exports){
 var React = require('react');
 
 var KeyListenerElement = React.createClass({displayName: "KeyListenerElement",
@@ -18574,7 +18574,7 @@ Note.prototype.changeTone = function(keyCode) {
 
 module.exports = Note;
 
-},{}],"/Users/bill/javascript/pentaphone/src/js/note_element.jsx":[function(require,module,exports){
+},{}],"/Users/bill/javascript/pentaphone/src/js/note_element.react.js":[function(require,module,exports){
 var React = require('react');
 
 var NoteElement = React.createClass({displayName: "NoteElement",
@@ -18635,7 +18635,7 @@ var NoteElement = React.createClass({displayName: "NoteElement",
 
 module.exports = NoteElement;
 
-},{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/src/js/tone_element.jsx":[function(require,module,exports){
+},{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/src/js/tone_element.react.js":[function(require,module,exports){
 var React = require('react');
 
 var ToneElement = React.createClass({displayName: "ToneElement",
@@ -18686,6 +18686,6 @@ var ToneElement = React.createClass({displayName: "ToneElement",
 
 module.exports = ToneElement;
 
-},{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}]},{},["./src/js/app.jsx"]);
+},{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}]},{},["./src/js/app.react.js"]);
 
 //# sourceMappingURL=bundle.js.map
