@@ -34,6 +34,9 @@
     "watchify": "^2.4.0"
   },
   "dependencies": {
+    "flux": "^2.0.1",
+    "keymirror": "^0.1.1",
+    "object-assign": "^2.0.0",
     "react": "^0.12.2"
   }
 }

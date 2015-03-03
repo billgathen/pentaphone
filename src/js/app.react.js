@@ -1,13 +1,13 @@
 var React = require('react');
 
-var ChordElement       = require('./chord_element.react');
-var NoteElement        = require('./note_element.react');
-var ToneElement        = require('./tone_element.react');
-var KeyListenerElement = require('./key_listener_element.react');
+var ChordElement       = require('./components/chord_element.react');
+var NoteElement        = require('./components/note_element.react');
+var ToneElement        = require('./components/tone_element.react');
+var KeyListenerElement = require('./components/key_listener_element.react');
 
-var Note       = require('./note.js');
-var MajorChord = require('./major_chord.js');
-var MinorChord = require('./minor_chord.js');
+var Note       = require('./components/note');
+var MajorChord = require('./components/major_chord');
+var MinorChord = require('./components/minor_chord');
 
 React.render(
   <ChordElement name="I"  keyName="s" chord={ new MajorChord(0) } />,

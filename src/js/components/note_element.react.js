@@ -1,4 +1,6 @@
-var React = require('react');
+var React     = require('react');
+var KeyStore  = require('../stores/key_store');
+var Constants = require('../constants/constants');
 
 var NoteElement = React.createClass({
   getInitialState: function() {
@@ -7,19 +9,29 @@ var NoteElement = React.createClass({
     }
   },
   componentDidMount: function() {
-    var self = this;
-    document.addEventListener(this.props.name + '-start', function(e) {
-      self.started();
-    });
-    document.addEventListener(this.props.name + '-stop', function(e) {
-      self.stopped();
-    });
-    document.addEventListener('Organ-start', function(e) {
-      self.changeTone(85);
-    });
-    document.addEventListener('8-Bit-start', function(e) {
-      self.changeTone(73);
-    });
+    KeyStore.addChangeListener(this.onChange);
+  },
+  componentDidUnmount: function() {
+    KeyStore.removeChangeListener(this.onChange);
+  },
+  onChange: function() {
+    var keyEvent = KeyStore.keyEvent();
+    switch(keyEvent.keyName) {
+      case this.props.name:
+        if (keyEvent.position == Constants.KEY_DOWN) {
+          this.started();
+        } else {
+          this.stopped();
+        }
+        break;
+      case 'Organ':
+        this.changeTone(85);
+        break;
+      case '8-Bit':
+        this.changeTone(73);
+        break;
+      default:
+    }
   },
   started: function() {
     if (this.isntStarted()) {
