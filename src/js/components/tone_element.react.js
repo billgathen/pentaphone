@@ -1,4 +1,6 @@
 var React = require('react');
+var KeyStore  = require('../stores/key_store');
+var Constants = require('../constants/constants');
 
 var ToneElement = React.createClass({
   getInitialState: function() {
@@ -7,14 +9,23 @@ var ToneElement = React.createClass({
     }
   },
   componentDidMount: function() {
-    var myCode = Number(this.props.keyCode);
-    var self = this;
-    document.addEventListener(this.props.name + '-start', function(e) {
-      self.pressed();
-    });
-    document.addEventListener(this.props.name + '-stop', function(e) {
-      self.released();
-    });
+    KeyStore.addChangeListener(this.onChange);
+  },
+  componentDidUnmount: function() {
+    KeyStore.removeChangeListener(this.onChange);
+  },
+  onChange: function() {
+    var keyEvent = KeyStore.keyEvent();
+    switch(keyEvent.name) {
+      case this.props.name:
+        if (keyEvent.position == Constants.KEY_DOWN) {
+          this.pressed();
+        } else {
+          this.released();
+        }
+        break;
+      default:
+    }
   },
   pressed: function() {
     if (this.isntPressed()) {

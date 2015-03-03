@@ -19133,7 +19133,7 @@ var Chord = React.createClass({displayName: "Chord",
   },
   onChange: function() {
     var keyEvent = KeyStore.keyEvent();
-    switch(keyEvent.keyName) {
+    switch(keyEvent.name) {
       case this.props.name:
         if (keyEvent.position == Constants.KEY_DOWN) {
           this.started();
@@ -19302,7 +19302,7 @@ var NoteElement = React.createClass({displayName: "NoteElement",
   },
   onChange: function() {
     var keyEvent = KeyStore.keyEvent();
-    switch(keyEvent.keyName) {
+    switch(keyEvent.name) {
       case this.props.name:
         if (keyEvent.position == Constants.KEY_DOWN) {
           this.started();
@@ -19358,6 +19358,8 @@ module.exports = NoteElement;
 
 },{"../constants/constants":"/Users/bill/javascript/pentaphone/src/js/constants/constants.js","../stores/key_store":"/Users/bill/javascript/pentaphone/src/js/stores/key_store.js","react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/src/js/components/tone_element.react.js":[function(require,module,exports){
 var React = require('react');
+var KeyStore  = require('../stores/key_store');
+var Constants = require('../constants/constants');
 
 var ToneElement = React.createClass({displayName: "ToneElement",
   getInitialState: function() {
@@ -19366,14 +19368,23 @@ var ToneElement = React.createClass({displayName: "ToneElement",
     }
   },
   componentDidMount: function() {
-    var myCode = Number(this.props.keyCode);
-    var self = this;
-    document.addEventListener(this.props.name + '-start', function(e) {
-      self.pressed();
-    });
-    document.addEventListener(this.props.name + '-stop', function(e) {
-      self.released();
-    });
+    KeyStore.addChangeListener(this.onChange);
+  },
+  componentDidUnmount: function() {
+    KeyStore.removeChangeListener(this.onChange);
+  },
+  onChange: function() {
+    var keyEvent = KeyStore.keyEvent();
+    switch(keyEvent.name) {
+      case this.props.name:
+        if (keyEvent.position == Constants.KEY_DOWN) {
+          this.pressed();
+        } else {
+          this.released();
+        }
+        break;
+      default:
+    }
   },
   pressed: function() {
     if (this.isntPressed()) {
@@ -19407,7 +19418,7 @@ var ToneElement = React.createClass({displayName: "ToneElement",
 
 module.exports = ToneElement;
 
-},{"react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/src/js/constants/constants.js":[function(require,module,exports){
+},{"../constants/constants":"/Users/bill/javascript/pentaphone/src/js/constants/constants.js","../stores/key_store":"/Users/bill/javascript/pentaphone/src/js/stores/key_store.js","react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/src/js/constants/constants.js":[function(require,module,exports){
 var keyMirror = require('keymirror');
 
 module.exports = keyMirror({
@@ -19464,11 +19475,11 @@ KeyStore.setMaxListeners(20);
 Dispatcher.register(function(action){
   switch(action.actionType) {
     case Constants.KEY_DOWN:
-      state = { keyName: eventTypeForCode[action.keyCode], position: Constants.KEY_DOWN };
+      state = { name: eventTypeForCode[action.keyCode], position: Constants.KEY_DOWN };
       KeyStore.emitChange();
       break;
     case Constants.KEY_UP:
-      state = { keyName: eventTypeForCode[action.keyCode], position: Constants.KEY_UP };
+      state = { name: eventTypeForCode[action.keyCode], position: Constants.KEY_UP };
       KeyStore.emitChange();
       break;
     default:

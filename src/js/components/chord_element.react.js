@@ -16,7 +16,7 @@ var Chord = React.createClass({
   },
   onChange: function() {
     var keyEvent = KeyStore.keyEvent();
-    switch(keyEvent.keyName) {
+    switch(keyEvent.name) {
       case this.props.name:
         if (keyEvent.position == Constants.KEY_DOWN) {
           this.started();

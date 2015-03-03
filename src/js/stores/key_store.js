@@ -41,11 +41,11 @@ KeyStore.setMaxListeners(20);
 Dispatcher.register(function(action){
   switch(action.actionType) {
     case Constants.KEY_DOWN:
-      state = { keyName: eventTypeForCode[action.keyCode], position: Constants.KEY_DOWN };
+      state = { name: eventTypeForCode[action.keyCode], position: Constants.KEY_DOWN };
       KeyStore.emitChange();
       break;
     case Constants.KEY_UP:
-      state = { keyName: eventTypeForCode[action.keyCode], position: Constants.KEY_UP };
+      state = { name: eventTypeForCode[action.keyCode], position: Constants.KEY_UP };
       KeyStore.emitChange();
       break;
     default:
