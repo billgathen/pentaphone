@@ -24,18 +24,10 @@ var Chord = React.createClass({
           this.stopped();
         }
         break;
-      case 'Organ':
-        this.changeTone(85);
-        break;
-      case '8-Bit':
-        this.changeTone(73);
-        break;
-      default:
     }
   },
   started: function() {
     if (this.isntStarted()) {
-      this.props.chord.start();
       this.setState({
         classes: this.state.classes.concat('started')
       });
@@ -43,15 +35,11 @@ var Chord = React.createClass({
   },
   stopped: function() {
     if (this.isStarted()) {
-      this.props.chord.stop();
       this.state.classes.splice(this.state.classes.indexOf('started'),1);
       this.setState({
         classes: this.state.classes
       });
     }
-  },
-  changeTone: function(keyCode) {
-    this.props.chord.changeTone(keyCode);
   },
   isntStarted: function() {
     return this.state.classes.indexOf('started') === -1;

@@ -24,18 +24,11 @@ var NoteElement = React.createClass({
           this.stopped();
         }
         break;
-      case 'Organ':
-        this.changeTone(85);
-        break;
-      case '8-Bit':
-        this.changeTone(73);
-        break;
       default:
     }
   },
   started: function() {
     if (this.isntStarted()) {
-      this.props.note.start();
       this.setState({
         classes: this.state.classes.concat('pressed')
       });
@@ -43,15 +36,11 @@ var NoteElement = React.createClass({
   },
   stopped: function() {
     if (this.isStarted()) {
-      this.props.note.stop();
       this.state.classes.splice(this.state.classes.indexOf('pressed'),1);
       this.setState({
         classes: this.state.classes
       });
     }    
-  },
-  changeTone: function(keyCode) {
-    this.props.note.changeTone(keyCode);
   },
   isntStarted: function() {
     return this.state.classes.indexOf('pressed') === -1;

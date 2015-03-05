@@ -1,3 +1,6 @@
+var KeyStore  = require('../stores/key_store');
+var Constants = require('../constants/constants');
+
 var ctx = new AudioContext();
 var root = 440;
 var defaultForm = "sine";
@@ -25,11 +28,35 @@ function gain() {
   return gainNode;
 }
 
-var Note = function(detune) {
+var Note = function(detune, keyName) {
   this.osc = osc(root, detune);
   this.gainNode = gain();
   this.osc.connect(this.gainNode);
   this.gain = defaultGain;
+  this.keyName = keyName;
+
+  // Make sure this is still this on the callback
+  KeyStore.addChangeListener(this.onChange.bind(this));
+}
+
+Note.prototype.onChange = function() {
+  var keyEvent = KeyStore.keyEvent();
+  switch(keyEvent.name) {
+    case this.keyName:
+      if (keyEvent.position == Constants.KEY_DOWN) {
+        this.start();
+      } else {
+        this.stop();
+      }
+      break;
+    case 'Organ':
+      this.changeTone(85);
+      break;
+    case '8-Bit':
+      this.changeTone(73);
+      break;
+    default:
+  }
 }
 
 Note.prototype.start = function() {
