@@ -40,6 +40,9 @@
 * DONE Extract key-listening to dedicated element which emits key-specific events: elements listen only for those
 * DONE Rename all .jsx files to .react.js
 * DONE Use flux to pass events
+* Extract tone components from visual components and wire separately
+* Invert chords
+* Build a good Jon Lord tone and call it "Lord"
 * Split tones: chords based on z, x, c, v and notes based on m, ,, ., /
 * Pressing a shifter changes the pentatonic, which stays there until shifted again
 * Visual elements on the page trigger by the playing: shifter changes palette, notes splash complementary colors across screen
