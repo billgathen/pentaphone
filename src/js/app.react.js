@@ -74,13 +74,13 @@ React.render(
 
 // Sound components
 
-new MajorChord(0,   "I");
-new MajorChord(500, "IV");
-new MajorChord(700, "V");
+new MajorChord(0,    "I",  "2nd");
+new MajorChord(500,  "IV", "1st");
+new MajorChord(-500, "V",  "root");
 
-new MinorChord(900, "vi");
-new MinorChord(200, "ii");
-new MinorChord(400, "iii");
+new MinorChord(-300, "vi",  "root");
+new MinorChord(200,  "ii",  "2nd");
+new MinorChord(400,  "iii", "2nd");
 
 new Note(0, "1");
 new Note(200, "2");

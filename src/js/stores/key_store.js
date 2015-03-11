@@ -36,7 +36,7 @@ var KeyStore = assign({}, EventEmitter.prototype, {
     this.emit(CHANGE_EVENT);
   }
 });
-KeyStore.setMaxListeners(20);
+KeyStore.setMaxListeners(50);
 
 Dispatcher.register(function(action){
   switch(action.actionType) {

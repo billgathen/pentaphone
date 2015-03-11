@@ -41,8 +41,9 @@
 * DONE Rename all .jsx files to .react.js
 * DONE Use flux to pass events
 * DONE Extract tone components from visual components and wire separately
-* Invert chords
-* Build a good Jon Lord tone and call it "Lord"
+* DONE Invert chords: 2nd, 1st up, root down and root down, 2nd up, 2nd up 
+* Accompaniment mode: chords include 2-octave-down root
+* Build a good Jon Lord tone and call it "Lord" (start with http://www.progsounds.com/blog/hammond-organ-emu)
 * Split tones: chords based on z, x, c, v and notes based on m, ,, ., /
 * Pressing a shifter changes the pentatonic, which stays there until shifted again
 * Visual elements on the page trigger by the playing: shifter changes palette, notes splash complementary colors across screen

@@ -75,13 +75,13 @@ React.render(
 
 // Sound components
 
-new MajorChord(0,   "I");
-new MajorChord(500, "IV");
-new MajorChord(700, "V");
+new MajorChord(0,    "I",  "2nd");
+new MajorChord(500,  "IV", "1st");
+new MajorChord(-500, "V",  "root");
 
-new MinorChord(900, "vi");
-new MinorChord(200, "ii");
-new MinorChord(400, "iii");
+new MinorChord(-300, "vi",  "root");
+new MinorChord(200,  "ii",  "2nd");
+new MinorChord(400,  "iii", "2nd");
 
 new Note(0, "1");
 new Note(200, "2");
@@ -19216,8 +19216,16 @@ module.exports = KeyListenerElement;
 },{"../actions/key_actions":"/Users/bill/javascript/pentaphone/src/js/actions/key_actions.js","react":"/Users/bill/javascript/pentaphone/node_modules/react/react.js"}],"/Users/bill/javascript/pentaphone/src/js/components/major_chord.js":[function(require,module,exports){
 var Chord = require('./chord.js');
 
-var MajorChord = function(root, keyName) {
-  this.chord = new Chord(root, keyName, 0, 400, 700);
+var MajorChord = function(root, keyName, inversion) {
+  var inversions = {
+    "root": [ 0, 400, 700 ],
+    "1st":  [ -800, -500, 0 ],
+    "2nd":  [ -500, 0, 400 ]
+  };
+  var note1 = inversions[inversion][0];
+  var note2 = inversions[inversion][1];
+  var note3 = inversions[inversion][2];
+  this.chord = new Chord(root, keyName, note1, note2, note3);
 }
 
 MajorChord.prototype.start       = function() { this.chord.start(); }
@@ -19229,8 +19237,16 @@ module.exports = MajorChord;
 },{"./chord.js":"/Users/bill/javascript/pentaphone/src/js/components/chord.js"}],"/Users/bill/javascript/pentaphone/src/js/components/minor_chord.js":[function(require,module,exports){
 var Chord = require('./chord.js');
 
-var MinorChord = function(root, keyName) {
-  this.chord = new Chord(root, keyName, 0, 300, 700);
+var MinorChord = function(root, keyName, inversion) {
+  var inversions = {
+    "root": [ 0, 300, 700 ],
+    "1st":  [ -900, -500, 0 ],
+    "2nd":  [ -500, 0, 300 ]
+  };
+  var note1 = inversions[inversion][0];
+  var note2 = inversions[inversion][1];
+  var note3 = inversions[inversion][2];
+  this.chord = new Chord(root, keyName, note1, note2, note3);
 }
 
 MinorChord.prototype.start      = function() { this.chord.start(); }
@@ -19492,7 +19508,7 @@ var KeyStore = assign({}, EventEmitter.prototype, {
     this.emit(CHANGE_EVENT);
   }
 });
-KeyStore.setMaxListeners(20);
+KeyStore.setMaxListeners(50);
 
 Dispatcher.register(function(action){
   switch(action.actionType) {
