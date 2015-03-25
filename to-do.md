@@ -42,15 +42,13 @@
 * DONE Use flux to pass events
 * DONE Extract tone components from visual components and wire separately
 * DONE Invert chords: 2nd, 1st up, root down and root down, 2nd up, 2nd up 
-* Accompaniment mode: chords include 2-octave-down root
-* Build a good Jon Lord tone and call it "Lord" (start with http://www.progsounds.com/blog/hammond-organ-emu)
-* Split tones: chords based on z, x, c, v and notes based on m, ,, ., /
-* Pressing a shifter changes the pentatonic, which stays there until shifted again
+* Pressing a chord shifts the pentatonic to the scale of that chord, which stays there until shifted again
 * Visual elements on the page trigger by the playing: shifter changes palette, notes splash complementary colors across screen
 * Select palette for visuals
 * Shapes of effects vary by tone
 * Rhythm section: drums and bass
 * Select the key signature (bass adjusts)
+* Accompaniment mode: chords include 2-octave-down root
 * Choose closed, open, inverted or root notes for LH
 * Add basic effects, ADSR, etc
 * Number keys trigger rhythms, allowing shifts within songs
@@ -58,3 +56,6 @@
 * Instructions show on page, but can be toggled on/off: effects happen behind
 * Safari requires window.webkitAudioContext: make it work there
 * Other problems on Safari, too: doesn't recognize events? investigate later
+* Build a good Jon Lord tone and call it "Lord"
+** http://www.progsounds.com/blog/hammond-organ-emu
+** https://developer.mozilla.org/en-US/docs/Web/API/WaveShaperNode
