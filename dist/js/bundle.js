@@ -19259,13 +19259,25 @@ module.exports = MinorChord;
 var KeyStore  = require('../stores/key_store');
 var Constants = require('../constants/constants');
 
-var ctx = new AudioContext();
+var ctx = findAudioContext();
 var root = 440;
 var defaultForm = "sine";
-var defaultGain = 0.5;
+var defaultGain = 0.3;
 var tones = {
-  85: { "form": "sine", "gain": 0.5 },
+  85: { "form": "sine", "gain": 0.3 },
   73: { "form": "square", "gain": 0.05 }
+}
+
+function findAudioContext() {
+  if (typeof AudioContext !== 'undefined') {
+    return new AudioContext();       // Recent Chrome and Firefox
+  } else if (typeof webkitAudioContext !== 'undefined') {
+    return new webkitAudioContext(); // Safari, older Chrome
+  } else if (typeof mozAudioContext !== 'undefined') {
+    return new mozAudioContext();    // Older Firefox
+  } else {
+    throw new Error("Audio Context not supported");
+  }
 }
 
 function osc(root, detune) {
@@ -19273,7 +19285,7 @@ function osc(root, detune) {
   osc.type = defaultForm;
   osc.frequency.value = root;
   osc.detune.value    = detune;
-  osc.start();
+  osc.start(ctx.currentTime);
 
   return osc;
 };

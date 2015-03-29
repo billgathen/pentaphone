@@ -42,6 +42,7 @@
 * DONE Use flux to pass events
 * DONE Extract tone components from visual components and wire separately
 * DONE Invert chords: 2nd, 1st up, root down and root down, 2nd up, 2nd up 
+* DONE Safari requires webkitAudioContext: support all prefixed contexts (webkitAudioContext, mozAudioContext)
 * Pressing a chord shifts the pentatonic to the scale of that chord, which stays there until shifted again
 * Visual elements on the page trigger by the playing: shifter changes palette, notes splash complementary colors across screen
 * Select palette for visuals
@@ -54,8 +55,6 @@
 * Number keys trigger rhythms, allowing shifts within songs
 * Rhythms trigger visuals, too
 * Instructions show on page, but can be toggled on/off: effects happen behind
-* Safari requires window.webkitAudioContext: make it work there
-* Other problems on Safari, too: doesn't recognize events? investigate later
 * Build a good Jon Lord tone and call it "Lord"
 ** http://www.progsounds.com/blog/hammond-organ-emu
 ** https://developer.mozilla.org/en-US/docs/Web/API/WaveShaperNode
