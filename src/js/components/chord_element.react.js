@@ -19,33 +19,12 @@ var Chord = React.createClass({
     switch(keyEvent.name) {
       case this.props.name:
         if (keyEvent.position == Constants.KEY_DOWN) {
-          this.started();
+          this.setState({ classes: [ 'chord', 'pressed' ] });
         } else {
-          this.stopped();
+          this.setState({ classes: [ 'chord' ] });
         }
         break;
     }
-  },
-  started: function() {
-    if (this.isntStarted()) {
-      this.setState({
-        classes: this.state.classes.concat('started')
-      });
-    }    
-  },
-  stopped: function() {
-    if (this.isStarted()) {
-      this.state.classes.splice(this.state.classes.indexOf('started'),1);
-      this.setState({
-        classes: this.state.classes
-      });
-    }
-  },
-  isntStarted: function() {
-    return this.state.classes.indexOf('started') === -1;
-  },
-  isStarted: function() {
-    return ! this.isntStarted();
   },
   render: function() {
     return <span>

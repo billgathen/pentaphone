@@ -46,11 +46,7 @@
 }
 
 .pressed {
-  border: 1px solid black;
-}
-
-.started {
-  border: 1px solid black;
+  background-color: #ccc;
 }
 
 .link {

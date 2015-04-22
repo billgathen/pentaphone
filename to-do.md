@@ -43,6 +43,7 @@
 * DONE Extract tone components from visual components and wire separately
 * DONE Invert chords: 2nd, 1st up, root down and root down, 2nd up, 2nd up 
 * DONE Safari requires webkitAudioContext: support all prefixed contexts (webkitAudioContext, mozAudioContext)
+* DONE Replace started/stopped/isStarted/isStopped with 2 calls to getState: on/off. Deleted 50 LOC!
 * Pressing a chord shifts the pentatonic to the scale of that chord, which stays there until shifted again
 * Visual elements on the page trigger by the playing: shifter changes palette, notes splash complementary colors across screen
 * Select palette for visuals
