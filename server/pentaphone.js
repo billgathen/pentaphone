@@ -5,11 +5,15 @@ exports.build = function(launchpad) {
 };
 
 exports.keydown = function(lp, name) {
-  lightColumn(lp, keyByName(name).x);
+  if (name !== null) {
+    lightColumn(lp, keyByName(name).x);
+  }
 };
 
 exports.keyup = function(lp, name) {
-  darkenColumn(lp, keyByName(name).x);
+  if (name !== null) {
+    darkenColumn(lp, keyByName(name).x);
+  }
 };
 
 exports.echoActions = function(lp, socket) {
@@ -146,8 +150,8 @@ function keys() {
     { name: 'vi',    x: 0, y: 2 },
     { name: 'ii',    x: 1, y: 2 },
     { name: 'iii',   x: 2, y: 2 },
-    { name: 'organ', x: 4, y: 2 },
-    { name: '8bit',  x: 5, y: 2 },
+    { name: 'Organ', x: 4, y: 2 },
+    { name: '8-Bit', x: 5, y: 2 },
     { name: 'I',     x: 0, y: 3 },
     { name: 'IV',    x: 1, y: 3 },
     { name: 'V',     x: 2, y: 3 },

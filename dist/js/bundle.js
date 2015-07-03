@@ -1,11 +1,11 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var React = require('react');
 
-var ChordElement             = require('./components/chord_element.react');
-var NoteElement              = require('./components/note_element.react');
-var ToneElement              = require('./components/tone_element.react');
-var KeyListenerElement       = require('./components/key_listener_element.react');
-var LaunchpadListenerElement = require('./components/launchpad_listener_element.react');
+var ChordElement                 = require('./components/chord_element.react');
+var NoteElement                  = require('./components/note_element.react');
+var ToneElement                  = require('./components/tone_element.react');
+var KeyListenerElement           = require('./components/key_listener_element.react');
+var LaunchpadCommunicatorElement = require('./components/launchpad_communicator_element.react');
 
 var Note       = require('./components/note');
 var MajorChord = require('./components/major_chord');
@@ -75,7 +75,7 @@ React.render(
 );
 
 React.render(
-  React.createElement(LaunchpadListenerElement, null),
+  React.createElement(LaunchpadCommunicatorElement, null),
   document.getElementById('launchpad-listener')
 );
 
@@ -96,7 +96,7 @@ new Note(700, "5");
 new Note(900, "6");
 
 
-},{"./components/chord_element.react":157,"./components/key_listener_element.react":158,"./components/launchpad_listener_element.react":159,"./components/major_chord":160,"./components/minor_chord":161,"./components/note":162,"./components/note_element.react":163,"./components/tone_element.react":164,"react":154}],2:[function(require,module,exports){
+},{"./components/chord_element.react":157,"./components/key_listener_element.react":158,"./components/launchpad_communicator_element.react":159,"./components/major_chord":160,"./components/minor_chord":161,"./components/note":162,"./components/note_element.react":163,"./components/tone_element.react":164,"react":154}],2:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -19202,7 +19202,9 @@ module.exports = KeyListenerElement;
 
 },{"../actions/key_actions":155,"react":154}],159:[function(require,module,exports){
 var React      = require('react');
+var KeyStore  = require('../stores/key_store');
 var KeyActions = require('../actions/key_actions');
+var Constants = require('../constants/constants');
 var keyCodeFor = {
   'I':     '83',
   'IV':    '68',
@@ -19210,8 +19212,8 @@ var keyCodeFor = {
   'vi':    '87',
   'ii':    '69',
   'iii':   '82',
-  'organ': '85',
-  '8bit':  '73',
+  'Organ': '85',
+  '8-Bit': '73',
   '1':     '32',
   '2':     '74',
   '3':     '75',
@@ -19219,21 +19221,35 @@ var keyCodeFor = {
   '6':     '59'
 };
 
-var LaunchpadListenerElement = React.createClass({displayName: "LaunchpadListenerElement",
+var LaunchpadCommunicatorElement = React.createClass({displayName: "LaunchpadCommunicatorElement",
   componentDidMount: function() {
     var socket = io();
+    this.passLaunchpadEventsToPage(socket);
+    this.passPageEventsToLaunchpad(socket);
+  },
+  passLaunchpadEventsToPage: function(socket) {
     socket.on('keydown', function(name) { KeyActions.keyDown(keyCodeFor[name]); });
     socket.on('keyup',   function(name) { KeyActions.keyUp(keyCodeFor[name]);   });
+  },
+  passPageEventsToLaunchpad: function(socket) {
+    KeyStore.addChangeListener(function() {
+      var keyEvent = KeyStore.keyEvent();
+      if (keyEvent.position == Constants.KEY_DOWN) {
+        socket.emit("keydown", keyEvent.name);
+      } else {
+        socket.emit("keyup", keyEvent.name);
+      }
+    });
   },
   render: function() {
     return React.createElement("span", {className: "launchpad-listener"});
   }
 });
 
-module.exports = LaunchpadListenerElement;
+module.exports = LaunchpadCommunicatorElement;
 
 
-},{"../actions/key_actions":155,"react":154}],160:[function(require,module,exports){
+},{"../actions/key_actions":155,"../constants/constants":165,"../stores/key_store":167,"react":154}],160:[function(require,module,exports){
 var Chord = require('./chord.js');
 
 var MajorChord = function(root, keyName, inversion) {

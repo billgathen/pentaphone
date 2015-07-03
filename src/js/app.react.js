@@ -1,10 +1,10 @@
 var React = require('react');
 
-var ChordElement             = require('./components/chord_element.react');
-var NoteElement              = require('./components/note_element.react');
-var ToneElement              = require('./components/tone_element.react');
-var KeyListenerElement       = require('./components/key_listener_element.react');
-var LaunchpadListenerElement = require('./components/launchpad_listener_element.react');
+var ChordElement                 = require('./components/chord_element.react');
+var NoteElement                  = require('./components/note_element.react');
+var ToneElement                  = require('./components/tone_element.react');
+var KeyListenerElement           = require('./components/key_listener_element.react');
+var LaunchpadCommunicatorElement = require('./components/launchpad_communicator_element.react');
 
 var Note       = require('./components/note');
 var MajorChord = require('./components/major_chord');
@@ -74,7 +74,7 @@ React.render(
 );
 
 React.render(
-  <LaunchpadListenerElement />,
+  <LaunchpadCommunicatorElement />,
   document.getElementById('launchpad-listener')
 );
 
