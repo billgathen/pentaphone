@@ -1,10 +1,11 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var React = require('react');
 
-var ChordElement       = require('./components/chord_element.react');
-var NoteElement        = require('./components/note_element.react');
-var ToneElement        = require('./components/tone_element.react');
-var KeyListenerElement = require('./components/key_listener_element.react');
+var ChordElement             = require('./components/chord_element.react');
+var NoteElement              = require('./components/note_element.react');
+var ToneElement              = require('./components/tone_element.react');
+var KeyListenerElement       = require('./components/key_listener_element.react');
+var LaunchpadListenerElement = require('./components/launchpad_listener_element.react');
 
 var Note       = require('./components/note');
 var MajorChord = require('./components/major_chord');
@@ -44,7 +45,7 @@ React.render(
   React.createElement(ToneElement, {name: "8-Bit", keyName: "i"}),
   document.getElementById('8-bit')
 );
- 
+
 React.render(
   React.createElement(NoteElement, {name: "1", keyName: "<spacebar>"}),
   document.getElementById('1-note')
@@ -73,6 +74,11 @@ React.render(
   document.getElementById('key-listener')
 );
 
+React.render(
+  React.createElement(LaunchpadListenerElement, null),
+  document.getElementById('launchpad-listener')
+);
+
 // Sound components
 
 new MajorChord(0,    "I",  "2nd");
@@ -89,7 +95,8 @@ new Note(400, "3");
 new Note(700, "5");
 new Note(900, "6");
 
-},{"./components/chord_element.react":157,"./components/key_listener_element.react":158,"./components/major_chord":159,"./components/minor_chord":160,"./components/note":161,"./components/note_element.react":162,"./components/tone_element.react":163,"react":154}],2:[function(require,module,exports){
+
+},{"./components/chord_element.react":157,"./components/key_listener_element.react":158,"./components/launchpad_listener_element.react":159,"./components/major_chord":160,"./components/minor_chord":161,"./components/note":162,"./components/note_element.react":163,"./components/tone_element.react":164,"react":154}],2:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -454,7 +461,7 @@ process.umask = function() { return 0; };
 
 },{}],4:[function(require,module,exports){
 /**
- * Copyright (c) 2014, Facebook, Inc.
+ * Copyright (c) 2014-2015, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -19103,7 +19110,7 @@ var KeyActions = {
 
 module.exports = KeyActions;
 
-},{"../constants/constants":164,"../dispatcher/dispatcher":165}],156:[function(require,module,exports){
+},{"../constants/constants":165,"../dispatcher/dispatcher":166}],156:[function(require,module,exports){
 var Note = require('./note.js');
 
 var Chord = function(root, keyName, detune1, detune2, detune3) {
@@ -19133,7 +19140,7 @@ Chord.prototype.changeTone = function(keyCode) {
 
 module.exports = Chord;
 
-},{"./note.js":161}],157:[function(require,module,exports){
+},{"./note.js":162}],157:[function(require,module,exports){
 var React     = require('react');
 var KeyStore  = require('../stores/key_store');
 var Constants = require('../constants/constants');
@@ -19173,7 +19180,7 @@ var Chord = React.createClass({displayName: "Chord",
 
 module.exports = Chord;
 
-},{"../constants/constants":164,"../stores/key_store":166,"react":154}],158:[function(require,module,exports){
+},{"../constants/constants":165,"../stores/key_store":167,"react":154}],158:[function(require,module,exports){
 var React      = require('react');
 var KeyActions = require('../actions/key_actions');
 
@@ -19194,6 +19201,39 @@ var KeyListenerElement = React.createClass({displayName: "KeyListenerElement",
 module.exports = KeyListenerElement;
 
 },{"../actions/key_actions":155,"react":154}],159:[function(require,module,exports){
+var React      = require('react');
+var KeyActions = require('../actions/key_actions');
+var keyCodeFor = {
+  'I':     '83',
+  'IV':    '68',
+  'V':     '70',
+  'vi':    '87',
+  'ii':    '69',
+  'iii':   '82',
+  'organ': '85',
+  '8bit':  '73',
+  '1':     '32',
+  '2':     '74',
+  '3':     '75',
+  '5':     '76',
+  '6':     '59'
+};
+
+var LaunchpadListenerElement = React.createClass({displayName: "LaunchpadListenerElement",
+  componentDidMount: function() {
+    var socket = io();
+    socket.on('keydown', function(name) { KeyActions.keyDown(keyCodeFor[name]); });
+    socket.on('keyup',   function(name) { KeyActions.keyUp(keyCodeFor[name]);   });
+  },
+  render: function() {
+    return React.createElement("span", {className: "launchpad-listener"});
+  }
+});
+
+module.exports = LaunchpadListenerElement;
+
+
+},{"../actions/key_actions":155,"react":154}],160:[function(require,module,exports){
 var Chord = require('./chord.js');
 
 var MajorChord = function(root, keyName, inversion) {
@@ -19214,7 +19254,7 @@ MajorChord.prototype.changeTone  = function(keyCode) { this.chord.changeTone(key
 
 module.exports = MajorChord;
 
-},{"./chord.js":156}],160:[function(require,module,exports){
+},{"./chord.js":156}],161:[function(require,module,exports){
 var Chord = require('./chord.js');
 
 var MinorChord = function(root, keyName, inversion) {
@@ -19235,7 +19275,7 @@ MinorChord.prototype.changeTone = function(keyCode) { this.chord.changeTone(keyC
 
 module.exports = MinorChord;
 
-},{"./chord.js":156}],161:[function(require,module,exports){
+},{"./chord.js":156}],162:[function(require,module,exports){
 var KeyStore  = require('../stores/key_store');
 var Constants = require('../constants/constants');
 
@@ -19324,7 +19364,7 @@ Note.prototype.changeTone = function(keyCode) {
 
 module.exports = Note;
 
-},{"../constants/constants":164,"../stores/key_store":166}],162:[function(require,module,exports){
+},{"../constants/constants":165,"../stores/key_store":167}],163:[function(require,module,exports){
 var React     = require('react');
 var KeyStore  = require('../stores/key_store');
 var Constants = require('../constants/constants');
@@ -19365,7 +19405,7 @@ var NoteElement = React.createClass({displayName: "NoteElement",
 
 module.exports = NoteElement;
 
-},{"../constants/constants":164,"../stores/key_store":166,"react":154}],163:[function(require,module,exports){
+},{"../constants/constants":165,"../stores/key_store":167,"react":154}],164:[function(require,module,exports){
 var React = require('react');
 var KeyStore  = require('../stores/key_store');
 var Constants = require('../constants/constants');
@@ -19427,7 +19467,7 @@ var ToneElement = React.createClass({displayName: "ToneElement",
 
 module.exports = ToneElement;
 
-},{"../constants/constants":164,"../stores/key_store":166,"react":154}],164:[function(require,module,exports){
+},{"../constants/constants":165,"../stores/key_store":167,"react":154}],165:[function(require,module,exports){
 var keyMirror = require('keymirror');
 
 module.exports = keyMirror({
@@ -19435,12 +19475,12 @@ module.exports = keyMirror({
   KEY_UP:   null
 })
 
-},{"keymirror":7}],165:[function(require,module,exports){
+},{"keymirror":7}],166:[function(require,module,exports){
 var Dispatcher = require('flux').Dispatcher;
 
 module.exports = new Dispatcher();
 
-},{"flux":4}],166:[function(require,module,exports){
+},{"flux":4}],167:[function(require,module,exports){
 var Dispatcher   = require('../dispatcher/dispatcher');
 var EventEmitter = require('events').EventEmitter;
 var Constants    = require('../constants/constants');
@@ -19498,6 +19538,6 @@ Dispatcher.register(function(action){
 
 module.exports = KeyStore;
 
-},{"../constants/constants":164,"../dispatcher/dispatcher":165,"events":2,"object-assign":8}]},{},[1]);
+},{"../constants/constants":165,"../dispatcher/dispatcher":166,"events":2,"object-assign":8}]},{},[1]);
 
 //# sourceMappingURL=bundle.js.map

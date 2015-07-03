@@ -1,9 +1,10 @@
 var React = require('react');
 
-var ChordElement       = require('./components/chord_element.react');
-var NoteElement        = require('./components/note_element.react');
-var ToneElement        = require('./components/tone_element.react');
-var KeyListenerElement = require('./components/key_listener_element.react');
+var ChordElement             = require('./components/chord_element.react');
+var NoteElement              = require('./components/note_element.react');
+var ToneElement              = require('./components/tone_element.react');
+var KeyListenerElement       = require('./components/key_listener_element.react');
+var LaunchpadListenerElement = require('./components/launchpad_listener_element.react');
 
 var Note       = require('./components/note');
 var MajorChord = require('./components/major_chord');
@@ -43,7 +44,7 @@ React.render(
   <ToneElement name="8-Bit" keyName="i" />,
   document.getElementById('8-bit')
 );
- 
+
 React.render(
   <NoteElement name="1" keyName="<spacebar>" />,
   document.getElementById('1-note')
@@ -70,6 +71,11 @@ React.render(
 React.render(
   <KeyListenerElement />,
   document.getElementById('key-listener')
+);
+
+React.render(
+  <LaunchpadListenerElement />,
+  document.getElementById('launchpad-listener')
 );
 
 // Sound components
