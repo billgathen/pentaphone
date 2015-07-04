@@ -19223,9 +19223,11 @@ var keyCodeFor = {
 
 var LaunchpadCommunicatorElement = React.createClass({displayName: "LaunchpadCommunicatorElement",
   componentDidMount: function() {
-    var socket = io();
-    this.passLaunchpadEventsToPage(socket);
-    this.passPageEventsToLaunchpad(socket);
+    if (typeof io === 'function') { // not running from a server
+      var socket = io();
+      this.passLaunchpadEventsToPage(socket);
+      this.passPageEventsToLaunchpad(socket);
+    }
   },
   passLaunchpadEventsToPage: function(socket) {
     socket.on('keydown', function(name) { KeyActions.keyDown(keyCodeFor[name]); });
