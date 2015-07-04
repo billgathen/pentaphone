@@ -6,23 +6,31 @@ var assetDir = path.join(__dirname, '../dist');
 
 var midiport      = 0;
 var pentaphone    = require('./pentaphone');
-var midiConnector = require('midi-launchpad').connect(midiport, false);
+try {
+  var midiConnector = require('midi-launchpad').connect(midiport, false);
 
-midiConnector.on('ready', function(launchpad) {
-  pentaphone.build(launchpad);
+  midiConnector.on('ready', function(launchpad) {
+    pentaphone.build(launchpad);
 
-  io.on('connection', function(socket) {
-    socket.on('keydown', function(name) {
-      pentaphone.keydown(launchpad, name);
+    io.on('connection', function(socket) {
+      socket.on('keydown', function(name) {
+        pentaphone.keydown(launchpad, name);
+      });
+
+      socket.on('keyup', function(name) {
+        pentaphone.keyup(launchpad, name);
+      });
+
+      pentaphone.echoActions(launchpad, socket);
     });
-
-    socket.on('keyup', function(name) {
-      pentaphone.keyup(launchpad, name);
-    });
-
-    pentaphone.echoActions(launchpad, socket);
   });
-});
+} catch(e) {
+  if (e instanceof RangeError) {
+    console.error('\nLaunchpad not found on midi port:' + midiport + '... Skipping setup\n');
+  } else {
+    console.error(e);
+  }
+}
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(assetDir, 'index.html'));
