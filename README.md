@@ -4,7 +4,7 @@ In-browser music performance tool using React.js and the Web Audio API.
 
 Check out the [home page](http://billgathen.github.io/pentaphone) for an explanation and a playable example, or watch the video below to see how it works!
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Tsd8n0jqOgU" frameborder="0" allowfullscreen></iframe>
+[![Introducing the Pentaphone](http://img.youtube.com/vi/Tsd8n0jqOgU/0.jpg)](http://www.youtube.com/watch?v=Tsd8n0jqOgU "Introducing the Pentaphone")
 
 ## Have a [Novation Launchpad](http://us.novationmusic.com/launch/launchpad#)?
 
