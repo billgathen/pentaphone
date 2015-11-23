@@ -5,20 +5,23 @@ var assign       = require('object-assign');
 
 var CHANGE_EVENT   = 'change';
 var eventTypeForCode = {
-  '83':  'I',
-  '68':  'IV',
-  '70':  'V',
-  '87':  'vi',
-  '69':  'ii',
-  '82':  'iii',
-  '85':  'Organ',
-  '73':  '8-Bit',
-  '32':  '1',
-  '74':  '2',
-  '75':  '3',
-  '76':  '5',
-  '59':  '6',
-  '186': '6'
+  '83':  'I',     // s
+  '68':  'IV',    // d
+  '70':  'V',     // f
+  '87':  'vi',    // w
+  '122': 'vi',    // z
+  '69':  'ii',    // e
+  '82':  'iii',   // r
+  '85':  'Organ', // u
+  '73':  '8-Bit', // i
+  '32':  '1',     // spacebar
+  '74':  '2',     // j
+  '75':  '3',     // k
+  '76':  '5',     // l
+  '59':  '6',     // ; (Firefox)
+  '186': '6',     // ;
+  '109': '6',     // m
+  '0':   '6'      // ö (German umlauts not correctly recognized)
 };
 var state = {};
 

@@ -24,7 +24,7 @@ React.render(
 );
 
 React.render(
-  <ChordElement name="vi"  keyName="w" />,
+  <ChordElement name="vi"  keyName="w/z" />,
   document.getElementById('vi-chord')
 );
 React.render(
@@ -64,7 +64,7 @@ React.render(
   document.getElementById('5-note')
 );
 React.render(
-  <NoteElement name="6" keyName=";" />,
+  <NoteElement name="6" keyName=";/ö/m" />,
   document.getElementById('6-note')
 );
 
