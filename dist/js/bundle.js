@@ -6,6 +6,7 @@ var NoteElement                  = require('./components/note_element.react');
 var ToneElement                  = require('./components/tone_element.react');
 var KeyListenerElement           = require('./components/key_listener_element.react');
 var LaunchpadCommunicatorElement = require('./components/launchpad_communicator_element.react');
+var SongExamplesElement           = require('./components/song_examples_element.react');
 
 var Note       = require('./components/note');
 var MajorChord = require('./components/major_chord');
@@ -79,6 +80,11 @@ React.render(
   document.getElementById('launchpad-listener')
 );
 
+React.render(
+  React.createElement(SongExamplesElement, {name: "Examples", keyName: "x"}),
+  document.getElementById('song-examples')
+);
+
 // Sound components
 
 new MajorChord(0,    "I",  "2nd");
@@ -96,7 +102,7 @@ new Note(700, "5");
 new Note(900, "6");
 
 
-},{"./components/chord_element.react":157,"./components/key_listener_element.react":158,"./components/launchpad_communicator_element.react":159,"./components/major_chord":160,"./components/minor_chord":161,"./components/note":162,"./components/note_element.react":163,"./components/tone_element.react":164,"react":154}],2:[function(require,module,exports){
+},{"./components/chord_element.react":157,"./components/key_listener_element.react":158,"./components/launchpad_communicator_element.react":159,"./components/major_chord":160,"./components/minor_chord":161,"./components/note":162,"./components/note_element.react":163,"./components/song_examples_element.react":164,"./components/tone_element.react":165,"react":154}],2:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -19110,7 +19116,7 @@ var KeyActions = {
 
 module.exports = KeyActions;
 
-},{"../constants/constants":165,"../dispatcher/dispatcher":166}],156:[function(require,module,exports){
+},{"../constants/constants":166,"../dispatcher/dispatcher":167}],156:[function(require,module,exports){
 var Note = require('./note.js');
 
 var Chord = function(root, keyName, detune1, detune2, detune3) {
@@ -19180,7 +19186,7 @@ var Chord = React.createClass({displayName: "Chord",
 
 module.exports = Chord;
 
-},{"../constants/constants":165,"../stores/key_store":167,"react":154}],158:[function(require,module,exports){
+},{"../constants/constants":166,"../stores/key_store":168,"react":154}],158:[function(require,module,exports){
 var React      = require('react');
 var KeyActions = require('../actions/key_actions');
 
@@ -19251,7 +19257,7 @@ var LaunchpadCommunicatorElement = React.createClass({displayName: "LaunchpadCom
 module.exports = LaunchpadCommunicatorElement;
 
 
-},{"../actions/key_actions":155,"../constants/constants":165,"../stores/key_store":167,"react":154}],160:[function(require,module,exports){
+},{"../actions/key_actions":155,"../constants/constants":166,"../stores/key_store":168,"react":154}],160:[function(require,module,exports){
 var Chord = require('./chord.js');
 
 var MajorChord = function(root, keyName, inversion) {
@@ -19382,7 +19388,7 @@ Note.prototype.changeTone = function(keyCode) {
 
 module.exports = Note;
 
-},{"../constants/constants":165,"../stores/key_store":167}],163:[function(require,module,exports){
+},{"../constants/constants":166,"../stores/key_store":168}],163:[function(require,module,exports){
 var React     = require('react');
 var KeyStore  = require('../stores/key_store');
 var Constants = require('../constants/constants');
@@ -19423,7 +19429,82 @@ var NoteElement = React.createClass({displayName: "NoteElement",
 
 module.exports = NoteElement;
 
-},{"../constants/constants":165,"../stores/key_store":167,"react":154}],164:[function(require,module,exports){
+},{"../constants/constants":166,"../stores/key_store":168,"react":154}],164:[function(require,module,exports){
+var React     = require('react');
+var KeyStore  = require('../stores/key_store');
+var Constants = require('../constants/constants');
+
+var SongExamplesElement = React.createClass({displayName: "SongExamplesElement",
+  getInitialState: function() {
+    return {
+      visible: false
+    }
+  },
+  componentDidMount: function() {
+    KeyStore.addChangeListener(this.onChange);
+  },
+  componentDidUnmount: function() {
+    KeyStore.removeChangeListener(this.onChange);
+  },
+  onChange: function() {
+    var keyEvent = KeyStore.keyEvent();
+    switch(keyEvent.name) {
+      case this.props.name:
+        if (keyEvent.position == Constants.KEY_DOWN) {
+          this.setState({ visible: ! this.state.visible });
+        } else {
+          // no op
+        }
+        break;
+      default:
+    }
+  },
+  render: function() {
+    return (
+      React.createElement("div", {className: "container"}, 
+        React.createElement("small", null, "Press ", React.createElement("label", null, "x"), " for song examples"), 
+         this.state.visible ? this.exampleText() : React.createElement("div", null)
+      )
+    );
+  },
+  exampleText: function() {
+    return (
+      React.createElement("div", null, 
+        React.createElement("p", null, 
+          "Here are a few American folk tunes that can by played by the Pentaphone, notated to match the key layout."
+        ), 
+        React.createElement("p", null, 
+          "\"Swing Low\" sounds a bit odd with the high 5, 6 in the middle. :)"
+        ), 
+        React.createElement("p", null, 
+          React.createElement("span", {className: "label label-info"}, "S"), " = space, ", 
+          React.createElement("span", {className: "label label-info"}, "-"), " = hold the key down, ", 
+          React.createElement("span", {className: "label label-info"}, "."), " = rest (don't play anything)"
+        ), 
+
+        React.createElement("table", null, 
+          React.createElement("tr", null, 
+            React.createElement("th", null, "Farmer in the Dell"), 
+            React.createElement("td", null, "S - S S - S S - - - . . . . . j k - k k - k k - - - . l - l - ; l k S - j k k j j S - - -")
+          ), 
+          React.createElement("tr", null, 
+            React.createElement("th", null, "Swing Low, Sweet Chariot "), 
+            React.createElement("td", null, "k S - - k S - S ; l - k k k k k k l - ; - - ; l k - - l k - k j S - k k k k k k j - S - - -")
+          ), 
+          React.createElement("tr", null, 
+            React.createElement("th", null, "Camptown Races"), 
+            React.createElement("td", null, "l l k l ; l k - k j - - - k j - - - l l k l ; l k - j - k j S - -")
+          )
+        )
+      )
+    );
+  },
+});
+
+module.exports = SongExamplesElement;
+
+
+},{"../constants/constants":166,"../stores/key_store":168,"react":154}],165:[function(require,module,exports){
 var React = require('react');
 var KeyStore  = require('../stores/key_store');
 var Constants = require('../constants/constants');
@@ -19485,7 +19566,7 @@ var ToneElement = React.createClass({displayName: "ToneElement",
 
 module.exports = ToneElement;
 
-},{"../constants/constants":165,"../stores/key_store":167,"react":154}],165:[function(require,module,exports){
+},{"../constants/constants":166,"../stores/key_store":168,"react":154}],166:[function(require,module,exports){
 var keyMirror = require('keymirror');
 
 module.exports = keyMirror({
@@ -19493,12 +19574,12 @@ module.exports = keyMirror({
   KEY_UP:   null
 })
 
-},{"keymirror":7}],166:[function(require,module,exports){
+},{"keymirror":7}],167:[function(require,module,exports){
 var Dispatcher = require('flux').Dispatcher;
 
 module.exports = new Dispatcher();
 
-},{"flux":4}],167:[function(require,module,exports){
+},{"flux":4}],168:[function(require,module,exports){
 var Dispatcher   = require('../dispatcher/dispatcher');
 var EventEmitter = require('events').EventEmitter;
 var Constants    = require('../constants/constants');
@@ -19522,7 +19603,8 @@ var eventTypeForCode = {
   '59':  '6',     // ; (Firefox)
   '186': '6',     // ;
   '109': '6',     // m
-  '0':   '6'      // ö (German umlauts not correctly recognized)
+  '0':   '6',     // ö (German umlauts not correctly recognized)
+  '88':  'Examples'
 };
 var state = {};
 
@@ -19560,6 +19642,6 @@ Dispatcher.register(function(action){
 module.exports = KeyStore;
 
 
-},{"../constants/constants":165,"../dispatcher/dispatcher":166,"events":2,"object-assign":8}]},{},[1]);
+},{"../constants/constants":166,"../dispatcher/dispatcher":167,"events":2,"object-assign":8}]},{},[1]);
 
 //# sourceMappingURL=bundle.js.map
