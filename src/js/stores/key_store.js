@@ -21,7 +21,8 @@ var eventTypeForCode = {
   '59':  '6',     // ; (Firefox)
   '186': '6',     // ;
   '109': '6',     // m
-  '0':   '6'      // ö (German umlauts not correctly recognized)
+  '0':   '6',     // ö (German umlauts not correctly recognized)
+  '88':  'Examples'
 };
 var state = {};
 

@@ -5,6 +5,7 @@ var NoteElement                  = require('./components/note_element.react');
 var ToneElement                  = require('./components/tone_element.react');
 var KeyListenerElement           = require('./components/key_listener_element.react');
 var LaunchpadCommunicatorElement = require('./components/launchpad_communicator_element.react');
+var SongExamplesElement           = require('./components/song_examples_element.react');
 
 var Note       = require('./components/note');
 var MajorChord = require('./components/major_chord');
@@ -76,6 +77,11 @@ React.render(
 React.render(
   <LaunchpadCommunicatorElement />,
   document.getElementById('launchpad-listener')
+);
+
+React.render(
+  <SongExamplesElement name="Examples" keyName="x" />,
+  document.getElementById('song-examples')
 );
 
 // Sound components
