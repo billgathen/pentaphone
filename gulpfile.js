@@ -39,3 +39,10 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('./dist/styles'))
     .pipe(notify({ message: 'Styles copied' }));
 });
+
+gulp.task('scripts', function() {
+  bundle();
+});
+
+// Default task
+gulp.task('default', ['html', 'styles', 'scripts', 'watch']);
