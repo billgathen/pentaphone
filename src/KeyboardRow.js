@@ -1,7 +1,7 @@
 import React from "react";
 import KeyboardKey from "./KeyboardKey";
 
-export default function LetterRow({ spacerWidth, keys }) {
+export default function KeyboardRow({ spacerWidth, keys }) {
   return (
     <div className="keyboard-row">
       {spacerWidth ? <div className={spacerWidth}></div> : ""}
