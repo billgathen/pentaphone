@@ -7,6 +7,7 @@
 :root {
   --danger: rgb(225, 0, 0);
   --bg-accent: #c9ddfa;
+  --key-size: 5rem;
 }
 
 .app {
@@ -31,4 +32,42 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  background-color: pink;
+  gap: 0.25rem;
+}
+
+.keyboard-row {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.key {
+  border: 1px solid gray;
+  border-radius: 0.25rem;
+  font-size: x-large;
+  height: var(--key-size);
+  text-align: center;
+  padding-top: 1.25rem;
+}
+
+.letter-key {
+  width: var(--key-size);
+}
+
+.space-bar {
+  width: calc(var(--key-size) * 5);
+}
+
+.half-key-spacer {
+  width: calc(var(--key-size) / 2);
+}
+
+.space-bar-spacer {
+  width: calc(var(--key-size) * 3);
 }

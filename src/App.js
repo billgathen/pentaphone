@@ -1,4 +1,5 @@
 import "./App.css";
+import Keyboard from "./Keyboard";
 
 function App() {
   return (
@@ -7,7 +8,7 @@ function App() {
         <h1>Pentaphone</h1>
       </div>
       <div className="main-interface">
-        <div>Keyboard will go here</div>
+        <Keyboard />
       </div>
       <div className="footer">
         <div>Created by Bill Gathen</div>
