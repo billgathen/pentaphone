@@ -76,8 +76,12 @@
   width: calc(var(--key-size) * 5);
 }
 
-.half-key-spacer {
+.middle-row-spacer {
   width: calc(var(--key-size) / 2);
+}
+
+.bottom-row-spacer {
+  width: calc(var(--key-size));
 }
 
 .space-bar-spacer {
