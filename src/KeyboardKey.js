@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
+import AudioNode from "./AudioNode";
 
-export default function KeyboardKey({
-  keyboardKey,
-  keyType = "letter-key",
-  keysPressed,
-}) {
+export default function KeyboardKey({ keyboardKey, keyType = "letter-key" }) {
   const [keyIsDown, setKeyIsDown] = useState(false);
+  const audioNode = AudioNode();
 
   const handleKeyDown = (event) => {
     if (event.code === keyboardKey.code) {
       console.log(`It's me! ${keyboardKey.code}`);
+      audioNode.on();
       setKeyIsDown(true);
     }
   };
@@ -17,6 +16,7 @@ export default function KeyboardKey({
   const handleKeyUp = (event) => {
     if (event.code === keyboardKey.code) {
       console.log(`Bye... ${keyboardKey.code}`);
+      audioNode.off();
       setKeyIsDown(false);
     }
   };
