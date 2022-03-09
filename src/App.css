@@ -10,6 +10,7 @@
   --bg-main: white;
   --key-size: 5rem;
   --key-color: lightgray;
+  --letter-color: black;
 }
 
 .app {
@@ -65,6 +66,7 @@
   height: var(--key-size);
   text-align: center;
   padding-top: 1.25rem;
+  color: var(--letter-color);
   background-color: var(--key-color);
 }
 
@@ -86,4 +88,8 @@
 
 .space-bar-spacer {
   width: calc(var(--key-size) * 3);
+}
+
+.is-pressed {
+  background-color: var(--bg-accent);
 }

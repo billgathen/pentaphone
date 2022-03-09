@@ -5,6 +5,7 @@ import KeyboardKey from "./KeyboardKey";
 
 export default function Keyboard() {
   const layout = keyboardLayouts("us-en");
+
   return (
     <div className="keyboard">
       <KeyboardRow keys={layout.topRow} />
