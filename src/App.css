@@ -7,23 +7,36 @@
 :root {
   --danger: rgb(225, 0, 0);
   --bg-accent: #c9ddfa;
+  --bg-main: white;
   --key-size: 5rem;
+  --key-color: lightgray;
 }
 
 .app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: var(--bg-main);
 }
 
 .header {
   background-color: var(--bg-accent);
   padding: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.logo {
+  width: 38px;
 }
 
 .main-interface {
   flex-grow: 1;
+  width: 100%;
   padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer {
@@ -37,8 +50,6 @@
 .keyboard {
   display: flex;
   flex-direction: column;
-  align-content: space-around;
-  background-color: pink;
   gap: 0.25rem;
 }
 
@@ -54,6 +65,7 @@
   height: var(--key-size);
   text-align: center;
   padding-top: 1.25rem;
+  background-color: var(--key-color);
 }
 
 .letter-key {
