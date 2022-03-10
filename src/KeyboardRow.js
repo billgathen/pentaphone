@@ -1,7 +1,12 @@
 import React from "react";
 import KeyboardKey from "./KeyboardKey";
 
-export default function KeyboardRow({ spacerWidth, keys, commands }) {
+export default function KeyboardRow({
+  spacerWidth,
+  keys,
+  commands,
+  soundConfig,
+}) {
   const row = () => {
     let r = [];
     for (let i = 0; i < keys.length; i++) {
@@ -10,6 +15,7 @@ export default function KeyboardRow({ spacerWidth, keys, commands }) {
           key={keys[i].label}
           keyboardKey={keys[i]}
           commandKey={commands[i]}
+          soundConfig={soundConfig}
         />
       );
     }

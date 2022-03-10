@@ -4,6 +4,7 @@ import SoundManager from "./SoundManager";
 export default function KeyboardKey({
   keyboardKey,
   commandKey,
+  soundConfig,
   keyType = "letter-key",
 }) {
   const [keyIsDown, setKeyIsDown] = useState(false);
@@ -25,7 +26,7 @@ export default function KeyboardKey({
       internalKeyIsDown = true;
       setKeyIsDown(true);
       if (commandKey.type === "note") {
-        note ||= SoundManager.getNote(commandKey.detune);
+        note ||= SoundManager.getNote(commandKey.detune, soundConfig);
         note.on();
       }
     }
