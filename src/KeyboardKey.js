@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import AudioNode from "./AudioNode";
+import SoundManager from "./SoundManager";
 
 export default function KeyboardKey({ keyboardKey, keyType = "letter-key" }) {
   const [keyIsDown, setKeyIsDown] = useState(false);
   // The event handler gets the initial state of keyIsDown from context,
-  // which means internally the key is always up.
+  // which means internally the value is always false.
   // Using this normal variable as well allows us to monitor the condition
-  // and avoid "re-downing" the key when keys are held down.
+  // and avoid retriggering the note when keys are held down.
   // The state variable is still required to trigger re-renders.
   let internalKeyIsDown = false;
-  // const audioNode = AudioNode();
+  let note = null;
 
   const handleKeyDown = (event) => {
     if (internalKeyIsDown) {
@@ -18,7 +18,8 @@ export default function KeyboardKey({ keyboardKey, keyType = "letter-key" }) {
 
     if (event.code === keyboardKey.code) {
       console.log(`It's me! ${keyboardKey.code}`);
-      // audioNode.on();
+      note ||= SoundManager.getNote();
+      note.on();
       internalKeyIsDown = true;
       setKeyIsDown(true);
     }
@@ -27,7 +28,7 @@ export default function KeyboardKey({ keyboardKey, keyType = "letter-key" }) {
   const handleKeyUp = (event) => {
     if (event.code === keyboardKey.code) {
       console.log(`Bye... ${keyboardKey.code}`);
-      // audioNode.off();
+      note.off();
       internalKeyIsDown = false;
       setKeyIsDown(false);
     }
