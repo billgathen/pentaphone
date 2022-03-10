@@ -3,12 +3,18 @@ import AudioNode from "./AudioNode";
 
 export default function KeyboardKey({ keyboardKey, keyType = "letter-key" }) {
   const [keyIsDown, setKeyIsDown] = useState(false);
-  const audioNode = AudioNode();
+  let internalKeyIsDown = false;
+  // const audioNode = AudioNode();
 
   const handleKeyDown = (event) => {
+    if (internalKeyIsDown) {
+      return;
+    }
+
     if (event.code === keyboardKey.code) {
       console.log(`It's me! ${keyboardKey.code}`);
-      audioNode.on();
+      // audioNode.on();
+      internalKeyIsDown = true;
       setKeyIsDown(true);
     }
   };
@@ -16,7 +22,8 @@ export default function KeyboardKey({ keyboardKey, keyType = "letter-key" }) {
   const handleKeyUp = (event) => {
     if (event.code === keyboardKey.code) {
       console.log(`Bye... ${keyboardKey.code}`);
-      audioNode.off();
+      // audioNode.off();
+      internalKeyIsDown = false;
       setKeyIsDown(false);
     }
   };
