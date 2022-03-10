@@ -3,6 +3,11 @@ import AudioNode from "./AudioNode";
 
 export default function KeyboardKey({ keyboardKey, keyType = "letter-key" }) {
   const [keyIsDown, setKeyIsDown] = useState(false);
+  // The event handler gets the initial state of keyIsDown from context,
+  // which means internally the key is always up.
+  // Using this normal variable as well allows us to monitor the condition
+  // and avoid "re-downing" the key when keys are held down.
+  // The state variable is still required to trigger re-renders.
   let internalKeyIsDown = false;
   // const audioNode = AudioNode();
 
