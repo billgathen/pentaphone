@@ -14,7 +14,7 @@ export default function KeyboardKey({
   // and avoid retriggering the note when keys are held down.
   // The state variable is still required to trigger re-renders.
   let internalKeyIsDown = false;
-  let note = null;
+  let sound = null;
 
   const handleKeyDown = (event) => {
     if (internalKeyIsDown) {
@@ -26,8 +26,11 @@ export default function KeyboardKey({
       internalKeyIsDown = true;
       setKeyIsDown(true);
       if (commandKey.type === "note") {
-        note ||= SoundManager.getNote(commandKey.detune, soundConfig);
-        note.on();
+        sound ||= SoundManager.getNote(commandKey, soundConfig);
+        sound.on();
+      } else if (commandKey.type === "chord") {
+        sound ||= SoundManager.getChord(commandKey, soundConfig);
+        sound.on();
       }
     }
   };
@@ -36,9 +39,9 @@ export default function KeyboardKey({
     if (event.code === keyboardKey.code) {
       internalKeyIsDown = false;
       setKeyIsDown(false);
-      if (commandKey.type === "note") {
+      if (commandKey.type === "note" || commandKey.type === "chord") {
         console.log(`Bye... ${keyboardKey.code}`);
-        note.off();
+        sound.off();
       }
     }
   };
