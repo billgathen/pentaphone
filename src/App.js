@@ -6,7 +6,8 @@ function App() {
     <div className="app">
       <div className="header">
         <img className="logo" src="/favicon.ico" alt="Logo" />
-        <h1>Pentaphone</h1>
+        <h1>The Pentaphone</h1>
+        <a href="https://billgathen.github.io/pentaphone/">What is this?</a>
       </div>
       <div className="main-interface">
         <Keyboard />

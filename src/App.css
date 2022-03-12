@@ -24,6 +24,12 @@
   background-color: var(--bg-accent);
   padding: 1rem;
   display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-and-name {
+  display: flex;
   gap: 0.5rem;
 }
 
@@ -48,6 +54,10 @@
   gap: 1rem;
 }
 
+.control-row {
+  display: flex;
+  justify-content: space-between;
+}
 .keyboard {
   display: flex;
   flex-direction: column;
