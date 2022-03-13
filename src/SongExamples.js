@@ -9,7 +9,6 @@ export default function SongExamples({ toggleSongExamplesAreOpen }) {
         The chords are just a suggestion.
       </p>
       <p>
-        <span className="inverse-label">S</span> = space,{" "}
         <span className="inverse-label">-</span> = hold the key down,{" "}
         <span className="inverse-label">.</span> = rest (don't play anything)
       </p>
@@ -19,50 +18,37 @@ export default function SongExamples({ toggleSongExamplesAreOpen }) {
           <tbody>
             <tr>
               <td>Chords</td>
-              <td colspan="16">I</td>
-              <td colspan="11">IV</td>
-              <td colspan="10">I</td>
+              <td colspan="8">I</td>
+              <td colspan="8">IV</td>
+              <td colspan="8">I</td>
               <td colspan="2">IV</td>
               <td colspan="2">V</td>
             </tr>
             <tr>
               <td>Notes</td>
               <td>1</td>
-              <td>-</td>
+              <td>1</td>
+              <td>1</td>
               <td>1</td>
               <td>1</td>
               <td>-</td>
-              <td>1</td>
-              <td>1</td>
               <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>.</td>
-              <td>.</td>
-              <td>.</td>
-              <td>.</td>
-              <td>.</td>
               <td>2</td>
               <td>3</td>
-              <td>-</td>
+              <td>3</td>
+              <td>3</td>
               <td>3</td>
               <td>3</td>
               <td>-</td>
-              <td>3</td>
-              <td>3</td>
               <td>-</td>
               <td>-</td>
-              <td>-</td>
-              <td>.</td>
               <td>5</td>
               <td>-</td>
               <td>5</td>
-              <td>-</td>
               <td>6</td>
               <td>5</td>
               <td>3</td>
               <td>1</td>
-              <td>-</td>
               <td>2</td>
               <td>3</td>
               <td>3</td>
@@ -84,9 +70,16 @@ export default function SongExamples({ toggleSongExamplesAreOpen }) {
             <tr>
               <td>Chords</td>
               <td></td>
+              <td colspan="4">I</td>
+              <td colspan="6">IV</td>
+              <td colspan="6">I</td>
+              <td colspan="2">V</td>
+              <td colspan="7">vi</td>
+              <td colspan="4">I</td>
+              <td colspan="6">IV</td>
+              <td colspan="6">V</td>
+              <td colspan="2">IV</td>
               <td colspan="2">I</td>
-              <td colspan="2"></td>
-              <td colspan="2"></td>
             </tr>
             <tr>
               <td>Notes</td>
@@ -110,6 +103,8 @@ export default function SongExamples({ toggleSongExamplesAreOpen }) {
               <td>5</td>
               <td>-</td>
               <td>6</td>
+              <td>-</td>
+              <td>-</td>
               <td>-</td>
               <td>-</td>
               <td>6</td>
