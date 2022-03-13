@@ -160,3 +160,7 @@ td:nth-of-type(1) {
   font-weight: bold;
   padding-right: 0.5rem;
 }
+
+h3 {
+  margin-top: 0.5rem;
+}
