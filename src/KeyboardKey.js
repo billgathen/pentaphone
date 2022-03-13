@@ -24,18 +24,22 @@ export default function KeyboardKey({
 
   useEffect(() => {
     sound && sound.configure(soundConfig);
+    // eslint-disable-next-line
   }, [soundConfig]);
 
   useEffect(() => {
     if (keyIsDown) {
-      if (!sound) {
-        setSound(SoundManager.getSound(commandKey, soundConfig));
-      } else {
-        sound.on();
+      if (commandKey.type === "note" || commandKey.type === "chord") {
+        if (!sound) {
+          setSound(SoundManager.getSound(commandKey, soundConfig));
+        } else {
+          sound.on();
+        }
       }
     } else {
       sound && sound.off();
     }
+    // eslint-disable-next-line
   }, [keyIsDown]);
 
   useEffect(() => {
