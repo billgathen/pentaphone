@@ -123,3 +123,30 @@
 .is-pressed {
   background-color: var(--bg-accent);
 }
+
+.instructions-toggle {
+  padding: 0.25rem 1rem;
+}
+
+.instructions {
+  margin: 0 auto;
+  width: 50rem;
+  height: 10rem;
+  background-color: var(--bg-accent);
+  padding: 1rem;
+  overflow-y: scroll;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+p {
+  margin-top: 0.5rem;
+}
+
+ul {
+  margin-left: 1rem;
+}
+
+li {
+  margin-top: 0.5rem;
+}
