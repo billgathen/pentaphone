@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Instructions({ toggleInstructionsAreOpen }) {
+export default function BasicInstructions({ toggleInstructionsAreOpen }) {
   return (
     <div className="instructions">
       <h2>What is the Pentaphone?</h2>

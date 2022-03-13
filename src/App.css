@@ -135,8 +135,6 @@
   background-color: var(--bg-accent);
   padding: 1rem;
   overflow-y: scroll;
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
 }
 
 p {
@@ -149,4 +147,16 @@ ul {
 
 li {
   margin-top: 0.5rem;
+}
+
+.inverse-label {
+  background-color: var(--bg-main);
+  padding: 0.25rem 0.5rem;
+  border: 1px solid grey;
+  border-radius: 0.25rem;
+}
+
+td:nth-of-type(1) {
+  font-weight: bold;
+  padding-right: 0.5rem;
 }

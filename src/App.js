@@ -1,25 +1,67 @@
 import React, { useState } from "react";
 import "./App.css";
 import Keyboard from "./Keyboard";
-import Instructions from "./Instructions";
+import BasicInstructions from "./BasicInstructions";
+import AdvancedInstructions from "./AdvancedInstructions";
+import SongExamples from "./SongExamples";
 
 export default function App() {
-  const [instructionsAreOpen, setInstructionsAreOpen] = useState(false);
-  const toggleInstructions = (e) => {
+  const [basicInstructionsAreOpen, setBasicInstructionsAreOpen] =
+    useState(false);
+  const toggleBasicInstructions = (e) => {
     e.target.blur();
-    setInstructionsAreOpen(!instructionsAreOpen);
+    setBasicInstructionsAreOpen(!basicInstructionsAreOpen);
+  };
+  const [advancedInstructionsAreOpen, setAdvancedInstructionsAreOpen] =
+    useState(false);
+  const toggleAdvancedInstructions = (e) => {
+    e.target.blur();
+    setAdvancedInstructionsAreOpen(!advancedInstructionsAreOpen);
+  };
+  const [songExamplesAreOpen, setSongExamplesAreOpen] = useState(false);
+  const toggleSongExamples = (e) => {
+    e.target.blur();
+    setSongExamplesAreOpen(!songExamplesAreOpen);
   };
   return (
     <div className="app">
       <div className="header">
         <img className="logo" src="/favicon.ico" alt="Logo" />
         <h1>The Pentaphone</h1>
-        <button className="instructions-toggle" onClick={toggleInstructions}>
-          {instructionsAreOpen ? "Close Instructions" : "What is this?"}
+        <button
+          className="instructions-toggle"
+          onClick={toggleBasicInstructions}
+        >
+          {basicInstructionsAreOpen
+            ? "Close Basic Instructions"
+            : "What is this?"}
+        </button>
+        <button className="instructions-toggle" onClick={toggleSongExamples}>
+          {songExamplesAreOpen ? "Close Song Examples" : "Song Examples"}
+        </button>
+        <button
+          className="instructions-toggle"
+          onClick={toggleAdvancedInstructions}
+        >
+          {advancedInstructionsAreOpen
+            ? "Close Advanced Instructions"
+            : "For the Adventurous"}
         </button>
       </div>
-      {instructionsAreOpen ? (
-        <Instructions toggleInstructions={toggleInstructions} />
+      {basicInstructionsAreOpen ? (
+        <BasicInstructions toggleBasicInstructions={toggleBasicInstructions} />
+      ) : (
+        ""
+      )}
+      {advancedInstructionsAreOpen ? (
+        <AdvancedInstructions
+          toggleAdvancedInstructions={toggleAdvancedInstructions}
+        />
+      ) : (
+        ""
+      )}
+      {songExamplesAreOpen ? (
+        <SongExamples toggleSongExamples={toggleSongExamples} />
       ) : (
         ""
       )}
