@@ -40,9 +40,9 @@ export default function BasicInstructions({ toggleInstructionsAreOpen }) {
         <p>Try a few of these ideas on for size:</p>
         <ul>
           <li>
-            Try holding a I and playing some notes with your right hand, then a
-            IV (with some more notes), then a V (more notes), then back to a I.
-            It should sound very familiar.
+            Try holding down a I with your left hand and playing some notes with
+            your right hand, then switch to a IV (with some more notes), then a
+            V (more notes), then back to a I. It should sound very familiar.
           </li>
           <li>
             Personally, I like minor chords even better (they have more drama),
