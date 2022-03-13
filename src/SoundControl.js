@@ -3,6 +3,7 @@ import React from "react";
 export default function SoundControl({ options, soundType, setSoundType }) {
   const selectType = (e) => {
     setSoundType(e.target.value);
+    e.target.blur();
   };
   return (
     <div className="sound-control">
