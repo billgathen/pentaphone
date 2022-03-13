@@ -21,11 +21,9 @@ export const getNote = (command, config) => {
 
   return {
     on: () => {
-      console.log("on");
       changeGain(0, onGain);
     },
     off: () => {
-      console.log("off");
       changeGain(onGain, 0);
     },
     configure: (config) => {

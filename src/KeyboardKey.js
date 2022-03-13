@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import SoundManager from "./SoundManager";
 
 export default function KeyboardKey({
@@ -23,7 +23,10 @@ export default function KeyboardKey({
   };
 
   useEffect(() => {
-    console.log(`${keyboardKey.code} ${keyIsDown ? "down" : "up"}`);
+    sound && sound.configure(soundConfig);
+  }, [soundConfig]);
+
+  useEffect(() => {
     if (keyIsDown) {
       if (!sound) {
         setSound(SoundManager.getSound(commandKey, soundConfig));

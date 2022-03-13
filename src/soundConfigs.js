@@ -9,8 +9,9 @@ export default function soundConfigs(key) {
   return {
     default: defaultConfig,
     sine: { ...defaultConfig, soundType: "sine" },
-    saw: { ...defaultConfig, soundType: "saw" },
+    triangle: { ...defaultConfig, soundType: "triangle" },
+    sawtooth: { ...defaultConfig, soundType: "sawtooth" },
     square: { ...defaultConfig, soundType: "square" },
-    options: ["sine", "saw", "square"],
+    options: ["sine", "triangle", "sawtooth", "square"],
   }[key];
 }
