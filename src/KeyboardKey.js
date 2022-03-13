@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import SoundManager from "./SoundManager";
 
 export default function KeyboardKey({
@@ -8,51 +8,43 @@ export default function KeyboardKey({
   keyType = "letter-key",
 }) {
   const [keyIsDown, setKeyIsDown] = useState(false);
-  // The event handler gets the initial state of keyIsDown from context,
-  // which means internally the value is always false.
-  // Using this normal variable as well allows us to monitor the condition
-  // and avoid retriggering the note when keys are held down.
-  // The state variable is still required to trigger re-renders.
-  let internalKeyIsDown = false;
-  let sound = null;
+  const [sound, setSound] = useState(null);
 
   const handleKeyDown = (event) => {
-    if (internalKeyIsDown) {
-      return;
-    }
-
     if (event.code === keyboardKey.code) {
-      console.log(`It's me! ${keyboardKey.code}`);
-      internalKeyIsDown = true;
       setKeyIsDown(true);
-      if (commandKey.type === "note") {
-        sound ||= SoundManager.getNote(commandKey, soundConfig);
-        sound.on();
-      } else if (commandKey.type === "chord") {
-        sound ||= SoundManager.getChord(commandKey, soundConfig);
-        sound.on();
-      }
     }
   };
 
   const handleKeyUp = (event) => {
     if (event.code === keyboardKey.code) {
-      internalKeyIsDown = false;
       setKeyIsDown(false);
-      if (commandKey.type === "note" || commandKey.type === "chord") {
-        console.log(`Bye... ${keyboardKey.code}`);
-        sound.off();
-      }
     }
   };
 
   useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
+    console.log(`${keyboardKey.code} ${keyIsDown ? "down" : "up"}`);
+    if (keyIsDown) {
+      if (!sound) {
+        setSound(SoundManager.getSound(commandKey, soundConfig));
+      } else {
+        sound.on();
+      }
+    } else {
+      sound && sound.off();
+    }
+  }, [keyIsDown]);
+
+  useEffect(() => {
+    const handleKeyDownEvent = (event) => handleKeyDown(event);
+    const handleKeyUpEvent = (event) => handleKeyUp(event);
+
+    window.addEventListener("keydown", handleKeyDownEvent);
+    window.addEventListener("keyup", handleKeyUpEvent);
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("keyup", handleKeyUp);
+      window.removeEventListener("keydown", handleKeyDownEvent);
+      window.removeEventListener("keyup", handleKeyUpEvent);
     };
     // eslint-disable-next-line
   }, []);

@@ -58,6 +58,20 @@
   display: flex;
   justify-content: space-between;
 }
+
+.sound-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.25rem;
+  gap: 0.25rem;
+}
+
+.sound-control-label {
+  font-weight: bold;
+  font-size: x-large;
+}
+
 .keyboard {
   display: flex;
   flex-direction: column;

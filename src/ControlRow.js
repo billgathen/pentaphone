@@ -1,18 +1,18 @@
 import React from "react";
-import ToneControl from "./ToneControl";
+import SoundControl from "./SoundControl";
 
 export default function ControlRow(props) {
   return (
     <div className="control-row">
-      <ToneControl
+      <SoundControl
         options={props.options}
-        toneOption={props.leftHandToneOption}
-        setToneOption={props.setLeftHandToneOption}
+        soundType={props.leftHandSoundType}
+        setSoundType={props.setLeftHandSoundType}
       />
-      <ToneControl
+      <SoundControl
         options={props.options}
-        toneOption={props.rightHandToneOption}
-        setToneOption={props.setRightHandToneOption}
+        soundType={props.rightHandSoundType}
+        setSoundType={props.setRightHandSoundType}
       />
     </div>
   );

@@ -8,9 +8,9 @@ export const getNote = (command, config) => {
   osc.detune.value = command.detune;
   const gain = audioCtx.createGain();
   gain.gain.value = 0;
-  const onGain = config.defaultGain || defaultGain;
-  osc.type = config.defaultType || defaultType;
-  osc.frequency.value = config.defaultFrequency || defaultFrequency;
+  let onGain = config.gain || defaultGain;
+  osc.type = config.soundType || defaultType;
+  osc.frequency.value = config.frequency || defaultFrequency;
   osc.connect(gain).connect(audioCtx.destination);
   osc.start(audioCtx.currentTime);
 
@@ -27,6 +27,11 @@ export const getNote = (command, config) => {
     off: () => {
       console.log("off");
       changeGain(onGain, 0);
+    },
+    configure: (config) => {
+      onGain = config.gain;
+      osc.type = config.soundType;
+      osc.frequency.value = config.frequency;
     },
   };
 };
@@ -64,12 +69,26 @@ export const getChord = ({ detune, tonality, inversion }, config) => {
       console.log("chordOff");
       notes.forEach((note) => note.off());
     },
+    configure: (config) => {
+      console.log("changeChordSound");
+      notes.forEach((note) => note.configure(config));
+    },
   };
 };
 
+const getSound = (command, config) => {
+  let sound = null;
+  if (command.type === "note") {
+    sound = getNote(command, config);
+  } else if (command.type === "chord") {
+    sound = getChord(command, config);
+  }
+  sound.on();
+  return sound;
+};
+
 const SoundManager = {
-  getNote,
-  getChord,
+  getSound,
 };
 
 export default SoundManager;

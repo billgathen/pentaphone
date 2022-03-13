@@ -5,7 +5,8 @@ export default function KeyboardRow({
   spacerWidth,
   keys,
   commands,
-  soundConfig,
+  leftHandSoundConfig,
+  rightHandSoundConfig,
 }) {
   const row = () => {
     let r = [];
@@ -15,7 +16,11 @@ export default function KeyboardRow({
           key={keys[i].label}
           keyboardKey={keys[i]}
           commandKey={commands[i]}
-          soundConfig={soundConfig}
+          soundConfig={
+            commands[i].hand === "left"
+              ? leftHandSoundConfig
+              : rightHandSoundConfig
+          }
         />
       );
     }

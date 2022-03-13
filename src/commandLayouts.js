@@ -10,6 +10,7 @@ export default function commandLayouts(key) {
           detune: -1500,
           tonality: "minor",
           inversion: "root",
+          hand: "left",
         },
         {
           label: "ii",
@@ -17,6 +18,7 @@ export default function commandLayouts(key) {
           detune: -1000,
           tonality: "minor",
           inversion: "2nd",
+          hand: "left",
         },
         {
           label: "iii",
@@ -24,6 +26,7 @@ export default function commandLayouts(key) {
           detune: -800,
           tonality: "minor",
           inversion: "2nd",
+          hand: "left",
         },
         {},
         {},
@@ -42,6 +45,7 @@ export default function commandLayouts(key) {
           detune: -1200,
           tonality: "major",
           inversion: "2nd",
+          hand: "left",
         },
         {
           label: "IV",
@@ -49,6 +53,7 @@ export default function commandLayouts(key) {
           detune: -700,
           tonality: "major",
           inversion: "1st",
+          hand: "left",
         },
         {
           label: "V",
@@ -56,17 +61,18 @@ export default function commandLayouts(key) {
           detune: -1700,
           tonality: "major",
           inversion: "root",
+          hand: "left",
         },
         {},
         {},
-        { label: "2", type: "note", detune: 200 },
-        { label: "3", type: "note", detune: 400 },
-        { label: "5", type: "note", detune: 700 },
-        { label: "6", type: "note", detune: 900 },
+        { label: "2", type: "note", detune: 200, hand: "right" },
+        { label: "3", type: "note", detune: 400, hand: "right" },
+        { label: "5", type: "note", detune: 700, hand: "right" },
+        { label: "6", type: "note", detune: 900, hand: "right" },
         {},
       ],
       bottomRow: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-      spaceBar: { label: "1", type: "note", detune: 0 },
+      spaceBar: { label: "1", type: "note", detune: 0, hand: "right" },
     },
   }[key];
 }
