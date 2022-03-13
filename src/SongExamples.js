@@ -64,7 +64,7 @@ export default function SongExamples({ toggleSongExamplesAreOpen }) {
       </p>
       <p>
         <strong>Swing Low, Sweet Chariot</strong>
-        <span>&nbsp;Sounds a bit odd with the high 5, 6 in the middle. :)</span>
+        <span>&nbsp;(Sounds a bit odd with the high 5, 6 in the middle)</span>
         <table>
           <tbody>
             <tr>
@@ -141,6 +141,14 @@ export default function SongExamples({ toggleSongExamplesAreOpen }) {
           <tbody>
             <tr>
               <td>Chords</td>
+              <td colspan="4">I</td>
+              <td colspan="4">IV</td>
+              <td colspan="4">V</td>
+              <td colspan="4">V</td>
+              <td colspan="4">I</td>
+              <td colspan="4">IV</td>
+              <td colspan="4">V</td>
+              <td colspan="4">I</td>
             </tr>
             <tr>
               <td>Notes</td>
@@ -156,10 +164,8 @@ export default function SongExamples({ toggleSongExamplesAreOpen }) {
               <td>2</td>
               <td>-</td>
               <td>-</td>
-              <td>-</td>
               <td>3</td>
               <td>2</td>
-              <td>-</td>
               <td>-</td>
               <td>-</td>
               <td>5</td>
