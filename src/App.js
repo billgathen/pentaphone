@@ -48,25 +48,30 @@ export default function App() {
             : "For the Adventurous"}
         </button>
       </div>
-      {basicInstructionsAreOpen ? (
-        <BasicInstructions toggleBasicInstructions={toggleBasicInstructions} />
-      ) : (
-        ""
-      )}
-      {advancedInstructionsAreOpen ? (
-        <AdvancedInstructions
-          toggleAdvancedInstructions={toggleAdvancedInstructions}
-        />
-      ) : (
-        ""
-      )}
-      {songExamplesAreOpen ? (
-        <SongExamples toggleSongExamples={toggleSongExamples} />
-      ) : (
-        ""
-      )}
       <div className="main-interface">
+        <div className="spacer">
+          {basicInstructionsAreOpen ? (
+            <BasicInstructions
+              toggleBasicInstructions={toggleBasicInstructions}
+            />
+          ) : (
+            ""
+          )}
+          {advancedInstructionsAreOpen ? (
+            <AdvancedInstructions
+              toggleAdvancedInstructions={toggleAdvancedInstructions}
+            />
+          ) : (
+            ""
+          )}
+          {songExamplesAreOpen ? (
+            <SongExamples toggleSongExamples={toggleSongExamples} />
+          ) : (
+            ""
+          )}
+        </div>
         <Keyboard />
+        <div className="spacer"></div>
       </div>
       <div className="footer">
         <div>Created by Bill Gathen</div>

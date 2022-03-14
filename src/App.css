@@ -38,12 +38,18 @@
 }
 
 .main-interface {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
   width: 100%;
-  padding: 1rem;
+  padding: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+}
+
+.spacer {
+  flex-grow: 1;
 }
 
 .footer {
@@ -131,10 +137,12 @@
 .instructions {
   margin: 0 auto;
   width: 50rem;
-  height: 10rem;
+  height: 15rem;
   background-color: var(--bg-accent);
+  overflow: scroll;
   padding: 1rem;
-  overflow-y: scroll;
+  position: relative;
+  z-index: 2;
 }
 
 p {
