@@ -1,6 +1,6 @@
 # The Pentaphone
 
-...is an in-browser music performance tool built on React.js and the Web Audio API.
+...is an in-browser music performance tool built on React.js and the Web Audio API. Rewritten from scratch to use modern js/react/web-audio-api in March, 2022.
 
 Check out the [home page](http://billgathen.github.io/pentaphone) for a playable example!
 
