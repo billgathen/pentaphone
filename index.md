@@ -2,7 +2,7 @@
 
 ...is an in-browser music performance tool built on React.js and the Web Audio API. Rewritten from scratch to use modern js/react/web-audio-api in March, 2022.
 
-Click [here](https://billgathen.github.io/pentaphone/build/index.html) for a playable example or [here](https://github.com/billgathen/pentaphone) to view the project code on GitHub.
+Click [here](/build/index.html) for a playable example or [here](https://github.com/billgathen/pentaphone) to view the project code on GitHub.
 
 ## What is the Pentaphone?
 
