@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.97670761.css",
-    "main.js": "/static/js/main.16ab80c1.js",
-    "index.html": "/index.html",
-    "main.97670761.css.map": "/static/css/main.97670761.css.map",
-    "main.16ab80c1.js.map": "/static/js/main.16ab80c1.js.map"
+    "main.css": "/pentaphone/static/css/main.97670761.css",
+    "main.js": "/pentaphone/static/js/main.16ab80c1.js",
+    "index.html": "/pentaphone/index.html",
+    "main.97670761.css.map": "/pentaphone/static/css/main.97670761.css.map",
+    "main.16ab80c1.js.map": "/pentaphone/static/js/main.16ab80c1.js.map"
   },
   "entrypoints": [
     "static/css/main.97670761.css",

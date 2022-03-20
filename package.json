@@ -1,7 +1,9 @@
 {
   "name": "pentaphone2",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
+  "license": "MIT",
+  "homepage": "https://billgathen.github.io/pentaphone",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",
