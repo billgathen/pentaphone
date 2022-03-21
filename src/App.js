@@ -26,7 +26,7 @@ export default function App() {
   return (
     <div className="app">
       <div className="header">
-        <img className="logo" src="/favicon.ico" alt="Logo" />
+        <img className="logo" src="/pentaphone/build/favicon.ico" alt="Logo" />
         <h1>The Pentaphone</h1>
         <button
           className="instructions-toggle"
